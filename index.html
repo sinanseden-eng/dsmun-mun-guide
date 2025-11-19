@@ -14,7 +14,6 @@
             margin: 0;
             padding: 20px;
             line-height: 1.6;
-            /* Ensure smooth gradient background for portal */
             background: linear-gradient(135deg, #1c1c1c 0%, #333333 100%);
             min-height: 100vh;
         }
@@ -27,10 +26,10 @@
 
         /* --- Page Hiding --- */
         .page {
-            display: none; /* All pages are hidden by default */
+            display: none;
         }
         .page.active {
-            display: block; /* The active page is shown */
+            display: block;
         }
         
         /* Back Button */
@@ -44,7 +43,6 @@
             text-decoration: none;
             font-weight: 600;
             transition: background 0.3s ease;
-            cursor: pointer;
         }
         .back-btn:hover {
             background: #2dc492;
@@ -59,32 +57,28 @@
             padding: 30px 40px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: left; /* Align text to left to accommodate image */
+            text-align: center;
             margin-bottom: 30px;
-            border-top: 5px solid #2dc492; /* Green accent */
-            position: relative; 
+            border-top: 5px solid #2dc492;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
         .portal-header-content {
             flex: 1;
+            text-align: center;
         }
-        .portal-header h1 {
-            color: #000;
-            font-size: 2.5rem;
-            margin: 0;
-            font-weight: 700;
+        .portal-header-logo {
+            max-width: 300px;
+            height: auto;
         }
-        /* LOGO IMAGE STYLE */
-        .portal-logo {
-            max-height: 80px; /* Adjust height as needed */
-            width: auto;
-            display: block;
-            margin-bottom: 10px;
+        .portal-header-mascot {
+            max-width: 150px;
+            height: auto;
         }
         .portal-header h2 {
-            color: #2dc492; /* Green */
+            color: #2dc492;
             font-size: 1.5rem;
             margin: 5px 0 10px;
             font-weight: 600;
@@ -93,11 +87,6 @@
             color: #555;
             font-size: 1.1rem;
             margin: 0;
-        }
-        .portal-mascot {
-            max-height: 120px; /* Adjust size as needed */
-            width: auto;
-            margin-left: 20px;
         }
         .portal-grid {
             display: grid;
@@ -114,9 +103,9 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border-bottom: 4px solid #eee;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .portal-card:hover {
             transform: translateY(-8px);
@@ -147,6 +136,11 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             text-align: center;
             margin-bottom: 30px;
+            animation: slideDown 0.6s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         #language-guide-page .guide-header h1 {
             color: #667eea;
@@ -163,14 +157,20 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             text-align: center;
+            animation: pulse 2.5s ease-in-out infinite;
         }
-        .golden-rule h2 { font-size: 2rem; margin-bottom: 15px; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .golden-rule h2 { font-size: 2rem; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
         .golden-rule p { font-size: 1.2rem; line-height: 1.8; }
         .section-title {
             color: white;
             font-size: 2rem;
             margin: 40px 0 20px 0;
             text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .phrases-grid {
             display: grid;
@@ -183,8 +183,10 @@
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-left: 5px solid #667eea;
         }
+        .phrase-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
         .phrase-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.1rem; }
         .phrase-card p { color: #555; font-style: italic; line-height: 1.6; }
         .accordion { margin-bottom: 15px; }
@@ -194,17 +196,20 @@
             border-radius: 15px;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .accordion-header:hover { transform: translateX(5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
         .accordion-header.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 15px 15px 0 0;
         }
         .accordion-title { font-size: 1.3rem; font-weight: 600; }
-        .accordion-icon { font-size: 1.5rem; font-weight: bold; }
+        .accordion-icon { font-size: 1.5rem; transition: transform 0.3s ease; font-weight: bold; }
+        .accordion-header.active .accordion-icon { transform: rotate(180deg); }
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -239,120 +244,658 @@
         .tips-box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); margin-top: 40px; }
         .tips-box h2 { color: #667eea; font-size: 1.8rem; margin-bottom: 20px; text-align: center; }
         .tips-list { list-style: none; padding-left: 0; }
-        .tips-list li { padding: 15px; margin: 10px 0; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 10px; font-size: 1.1rem; }
+        .tips-list li { padding: 15px; margin: 10px 0; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 10px; font-size: 1.1rem; transition: transform 0.3s ease; }
+        .tips-list li:hover { transform: translateX(10px); }
         .tips-list li::before { content: "✓"; color: #667eea; font-weight: bold; font-size: 1.3rem; margin-right: 10px; }
-        .tooltip { position: relative; display: inline-block; border-bottom: 2px dotted #667eea; cursor: help; }
-        .tooltip .tooltip-text {
-            visibility: hidden; width: 250px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -125px; opacity: 0; transition: opacity 0.3s; font-size: 0.9rem; font-weight: 400;
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 2px dotted #667eea;
+            cursor: help;
         }
-        .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+        .accordion-header.active .tooltip {
+             border-bottom: 2px dotted #fff;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
         .example-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
-        .example-table th, .example-table td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top; }
+        .example-table th, .example-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
         .example-table th { background-color: #f2f2f2; color: #333; }
         .example-table .bad { background-color: #fff5f5; color: #c53030; }
         .example-table .good { background-color: #f0fff4; color: #276749; }
+        .example-table .bad::before { content: '❌ '; font-weight: bold; }
+        .example-table .good::before { content: '✅ '; font-weight: bold; }
 
         /* ===== 3. RESOLUTION GUIDE STYLES ===== */
-        #resolution-guide-page { background-color: #f4f7f6; padding: 20px; }
-        #resolution-guide-page .guide-container { max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; }
-        #resolution-guide-page .header-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; text-align: center; }
+        #resolution-guide-page {
+            background-color: #f4f7f6;
+            padding: 20px;
+        }
+        #resolution-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #resolution-guide-page .header-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
         #resolution-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #resolution-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
         #resolution-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
+        #resolution-guide-page .section:last-child { border-bottom: none; }
         #resolution-guide-page h2 { font-size: 1.75rem; margin-bottom: 20px; }
         #resolution-guide-page .intro h2 { color: #5a67d8; }
+        #resolution-guide-page .header-info h2 { color: #d69e2e; }
         #resolution-guide-page .preamble h2 { color: #3182ce; }
         #resolution-guide-page .operative h2 { color: #38a169; }
+        #resolution-guide-page .rules h2 { color: #d53f8c; }
+        #resolution-guide-page .summary h2 { color: #6B46C1; }
         #resolution-guide-page .gemini-helper h2 { color: #805AD5; }
-        #resolution-guide-page .clause-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        #resolution-guide-page .clause-card { background: #f7fafc; border-left: 4px solid; padding: 12px 15px; border-radius: 6px; font-family: 'Courier New', monospace; font-weight: 600; }
-        #resolution-guide-page .preamble .clause-card { border-color: #3182ce; }
-        #resolution-guide-page .operative .clause-card { border-color: #38a169; }
-        .reso-text-block { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; margin: 15px 0; }
-        .reso-remark { background: #fefcbf; border: 1px solid #f6e05e; border-left: 4px solid #f6e05e; border-radius: 8px; padding: 15px 20px; margin: 0 0 25px 0; font-size: 1rem; line-height: 1.6; }
-        .reso-remark::before { content: '💡 Remark: '; font-weight: 700; color: #d69e2e; display: block; margin-bottom: 5px; }
-        .reso-text-block i { font-style: italic; color: #3182ce; font-weight: bold; }
-        .reso-text-block u { text-decoration: underline; color: #38a169; font-weight: bold; }
+        #resolution-guide-page .annotated-reso h2 { color: #6B46C1; }
+        .reso-text-block {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 15px 0;
+        }
+        .reso-remark {
+            background: #fefcbf;
+            border: 1px solid #f6e05e;
+            border-left: 4px solid #f6e05e;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 0 0 25px 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .reso-remark::before {
+            content: '💡 Remark: ';
+            font-weight: 700;
+            color: #d69e2e;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .reso-text-block .reso-preamble-header {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .reso-text-block i {
+            font-style: italic;
+            color: #3182ce;
+            font-weight: bold;
+        }
+        .reso-text-block u {
+            text-decoration: underline;
+            color: #38a169;
+            font-weight: bold;
+        }
+        .reso-text-block .end-comma, .reso-text-block .end-semi, .reso-text-block .end-period {
+            color: #e53e3e;
+            font-weight: bold;
+        }
         .reso-text-block .sub-clause { padding-left: 20px; }
         .reso-text-block .sub-sub-clause { padding-left: 40px; }
 
-        /* Gemini Helper Styles */
+        #resolution-guide-page .clause-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        #resolution-guide-page .clause-card {
+            background: #f7fafc;
+            border-left: 4px solid;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+        }
+        #resolution-guide-page .preamble .clause-card { border-color: #3182ce; }
+        #resolution-guide-page .operative .clause-card { border-color: #38a169; }
+        #resolution-guide-page .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        #resolution-guide-page .rule-card {
+            background: #fffaf0;
+            border: 1px solid #feebc8;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        #resolution-guide-page .rule-card h3 { color: #c05621; margin-bottom: 10px; font-size: 1.2rem; }
+        #resolution-guide-page .example-box {
+            background: #fafafa;
+            border: 1px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #resolution-guide-page .example-box .comment { color: #718096; font-style: italic; }
+        #resolution-guide-page .example-box .highlight { background-color: #fefcbf; font-weight: bold; }
+        #resolution-guide-page .example-box .end-comma { color: #e53e3e; font-weight: bold; }
+        #resolution-guide-page .example-box .end-semi { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
+        #resolution-guide-page .example-box .end-period { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
+        #resolution-guide-page .summary-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        #resolution-guide-page .summary-list ul { list-style: none; padding: 0; margin: 0; }
+        #resolution-guide-page .summary-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        #resolution-guide-page .summary-list li::before {
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 1.5rem;
+        }
+        #resolution-guide-page .do-list li::before { content: '✅'; }
+        #resolution-guide-page .dont-list li::before { content: '❌'; }
         #resolution-guide-page .gemini-helper { background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf5 100%); }
-        #resolution-guide-page .gemini-helper textarea { width: 100%; height: 100px; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e0; font-family: 'Inter', sans-serif; font-size: 1rem; margin-bottom: 15px; resize: vertical; }
+        #resolution-guide-page .gemini-helper textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
         #resolution-guide-page .gemini-helper .controls { display: flex; gap: 15px; align-items: center; }
-        #resolution-guide-page .gemini-helper select { padding: 12px; border-radius: 8px; border: 1px solid #cbd5e0; font-size: 1rem; flex-grow: 1; }
-        #resolution-guide-page .gemini-helper button { padding: 12px 20px; border-radius: 8px; border: none; background: #805AD5; color: white; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease; }
+        #resolution-guide-page .gemini-helper select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+        #resolution-guide-page .gemini-helper button {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            background: #805AD5;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
         #resolution-guide-page .gemini-helper button:disabled { background: #b794f4; cursor: not-allowed; }
         #resolution-guide-page .gemini-helper button:hover:not(:disabled) { background: #6B46C1; }
-        #resolution-guide-page #loading-spinner { display: none; width: 24px; height: 24px; border: 3px solid rgba(128, 90, 213, 0.3); border-radius: 50%; border-top-color: #805AD5; animation: spin 1s ease-in-out infinite; margin: 20px auto 0; }
+        #resolution-guide-page #loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(128, 90, 213, 0.3);
+            border-radius: 50%;
+            border-top-color: #805AD5;
+            animation: spin 1s ease-in-out infinite;
+            margin: 20px auto 0;
+        }
         @keyframes spin { to { transform: rotate(360deg); } }
-        #resolution-guide-page #result-container { margin-top: 20px; background: #fafafa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; display: none; position: relative; }
-        #resolution-guide-page #result-container pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New', monospace; font-size: 1rem; margin: 0; padding-right: 70px; }
-        #resolution-guide-page #copy-btn { position: absolute; top: 10px; right: 10px; padding: 6px 10px; font-size: 0.8rem; background: #e2e8f0; color: #4a5568; border: none; border-radius: 5px; cursor: pointer; }
+        #resolution-guide-page #result-container {
+            margin-top: 20px;
+            background: #fafafa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+            position: relative;
+        }
+        #resolution-guide-page #result-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            margin: 0;
+            padding-right: 70px;
+        }
+        #resolution-guide-page #copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #resolution-guide-page #copy-btn:hover { background: #cbd5e0; }
+        #resolution-guide-page #error-box {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border: 1px solid #e53e3e;
+            background: #fff5f5;
+            color: #c53030;
+            border-radius: 8px;
+        }
 
         /* ===== 4. STUDENT OFFICER GUIDE STYLES ===== */
-        #student-officer-guide-page { background: #fff; padding: 20px; }
-        #student-officer-guide-page .guide-container { max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; }
-        #student-officer-guide-page .header-card { background: linear-gradient(135deg, #08AEEA 0%, #2AF598 100%); color: white; padding: 40px 30px; text-align: center; }
+        #student-officer-guide-page {
+            background: #fff;
+            padding: 20px;
+        }
+        #student-officer-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #student-officer-guide-page .header-card {
+            background: linear-gradient(135deg, #08AEEA 0%, #2AF598 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
         #student-officer-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #student-officer-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
         #student-officer-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
+        #student-officer-guide-page .section:last-child { border-bottom: none; }
         #student-officer-guide-page .section h2 { color: #08AEEA; }
-        #student-officer-guide-page .chair-dialogue-box { background: #f8f9fa; border: 1px solid #e9ecef; border-left: 4px solid #08AEEA; border-radius: 8px; margin: 15px 0; padding: 15px 20px; }
-        #student-officer-guide-page .chair-dialogue-box .phrase { font-weight: 600; color: #333; display: block; margin-bottom: 5px; }
-        #student-officer-guide-page .chair-dialogue-box .dialogue { color: #555; padding-left: 15px; border-left: 3px solid #ced4da; margin-top: 8px; font-style: italic; font-size: 0.95rem; }
-        #student-officer-guide-page .dialogue .speaker-chair { color: #d32f2f; font-weight: 700; }
-        #student-officer-guide-page .dialogue .speaker-delegate { color: #1976d2; font-weight: 700; }
-
+        #student-officer-guide-page .section p { font-size: 1.1rem; }
+        
+        #student-officer-guide-page .chair-dialogue-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #08AEEA;
+            border-radius: 8px;
+            margin: 15px 0;
+            padding: 15px 20px;
+        }
+        #student-officer-guide-page .chair-dialogue-box p {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+        }
+        #student-officer-guide-page .chair-dialogue-box .phrase {
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        #student-officer-guide-page .chair-dialogue-box .dialogue {
+            color: #555;
+            padding-left: 15px;
+            border-left: 3px solid #ced4da;
+            margin-top: 8px;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        #student-officer-guide-page .dialogue .speaker-chair {
+            color: #d32f2f;
+            font-weight: 700;
+        }
+         #student-officer-guide-page .dialogue .speaker-delegate {
+            color: #1976d2;
+            font-weight: 700;
+        }
+        
         /* ===== 5. FLOW OF DEBATE GUIDE STYLES ===== */
-        #flow-of-debate-page { background: #fff; padding: 20px; }
-        #flow-of-debate-page .guide-container { max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; }
-        #flow-of-debate-page .header-card { background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%); color: white; padding: 40px 30px; text-align: center; }
+        #flow-of-debate-page {
+            background: #fff;
+            padding: 20px;
+        }
+        #flow-of-debate-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #flow-of-debate-page .header-card {
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
         #flow-of-debate-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #flow-of-debate-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
         #flow-of-debate-page .section { padding: 30px; }
         #flow-of-debate-page .section h2 { color: #FF6A88; text-align: center; }
-        .flowchart { display: flex; flex-direction: column; align-items: center; padding: 20px; font-family: 'Inter', sans-serif; }
-        .flow-step { background: #f4f4f4; border: 1px solid #ddd; border-radius: 8px; padding: 15px 25px; text-align: center; font-size: 1rem; font-weight: 600; color: #333; box-shadow: 0 4px 8px rgba(0,0,0,0.05); max-width: 500px; width: 100%; margin: 10px 0; }
-        .flow-step-main { background: #fff0f0; border-color: #ffb3b3; color: #d6336c; }
-        .flow-step-secondary { background: #e6f7ff; border-color: #b3e0ff; color: #1976d2; }
-        .flow-step-action { background: #f3e8ff; border-color: #d8b4fe; color: #862e9c; }
-        .flow-step-end { background: #e6f7eb; border-color: #b3e6cc; color: #2f9e44; }
-        .flow-connector { height: 30px; position: relative; display: flex; justify-content: center; width: 100%; }
-        .flow-connector::before { content: ''; position: absolute; width: 2px; height: 100%; background: #ccc; }
-        .flow-connector.arrow::after { content: '▼'; position: absolute; bottom: -8px; font-size: 1.2rem; color: #ccc; }
-        .flow-split-container { display: flex; justify-content: space-around; width: 100%; }
-        .flow-split-branch { display: flex; flex-direction: column; align-items: center; width: 45%; }
+        
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .flow-step, .flow-split-container, .flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .flow-step {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            max-width: 500px;
+        }
+        .flow-step-main {
+            background: #fff0f0;
+            border-color: #ffb3b3;
+            color: #d6336c;
+        }
+        .flow-step-secondary {
+            background: #e6f7ff;
+            border-color: #b3e0ff;
+            color: #1976d2;
+        }
+        .flow-step-action {
+             background: #f3e8ff;
+            border-color: #d8b4fe;
+            color: #862e9c;
+        }
+        .flow-step-end {
+            background: #e6f7eb;
+            border-color: #b3e6cc;
+            color: #2f9e44;
+        }
+        .flow-connector {
+            height: 30px;
+            position: relative;
+        }
+        .flow-connector::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: #ccc;
+        }
+        .flow-connector.arrow::after {
+            content: '▼';
+            position: absolute;
+            bottom: -8px;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        .flow-split-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .flow-split-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+        }
+        .flow-split-branch .flow-step {
+            width: 100%;
+        }
 
         /* ===== 6. FOR/AGAINST SPEECH GUIDE STYLES ===== */
-        #speech-guide-page { background: #fff; }
-        #speech-guide-page .guide-container { max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; }
-        #speech-guide-page .header-card { background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%); color: white; padding: 40px 30px; text-align: center; }
-        #speech-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
-        #speech-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
-        #speech-guide-page .section h2 { color: #ED8F03; }
-        /* Color coded speech styles */
-        .speech-box .adj { color: #0056b3; font-weight: bold; } /* Blue for adjectives/emphasis */
-        .speech-box .expr { color: #d9534f; font-weight: bold; font-style: italic; } /* Red for expressions */
-        
-        @media (max-width: 768px) {
-            .portal-grid, .phrases-grid, #resolution-guide-page .clause-grid { grid-template-columns: 1fr; }
-            .flow-split-container { flex-direction: column; align-items: center; }
-            .flow-split-branch { width: 90%; }
-            .portal-header { flex-direction: column; text-align: center; }
-            .portal-mascot { margin-left: 0; margin-top: 20px; }
+        #speech-guide-page {
+            background: #fff;
+            padding: 20px;
         }
+        #speech-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #speech-guide-page .header-card {
+            background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        #speech-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #speech-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+        #speech-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
+        #speech-guide-page .section:last-child { border-bottom: none; }
+        #speech-guide-page .section h2 { color: #ED8F03; }
+        #speech-guide-page .section h3 { color: #333; font-size: 1.4rem; margin-bottom: 15px; }
+
+        .speech-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .speech-tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #777;
+            position: relative;
+            bottom: -2px;
+            border-bottom: 2px solid transparent;
+            flex-shrink: 0;
+        }
+        .speech-tab-btn.active {
+            color: #ED8F03;
+            border-bottom-color: #ED8F03;
+        }
+        .speech-tab-content {
+            display: none;
+        }
+        .speech-tab-content.active {
+            display: block;
+        }
+        .reso-summary {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 20px;
+        }
+        .reso-summary h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+        }
+        .reso-summary ul {
+            padding-left: 20px;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        .speech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .speech-box {
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .speech-box h4 {
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+        .speech-box.speech-for {
+            border-left: 5px solid #2f9e44;
+        }
+        .speech-box.speech-for h4 {
+            color: #2f9e44;
+            border-bottom-color: #b3e6cc;
+        }
+        .speech-box.speech-against {
+            border-left: 5px solid #e03131;
+        }
+        .speech-box.speech-against h4 {
+            color: #e03131;
+            border-bottom-color: #ffb3b3;
+        }
+        .speech-box p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .speech-box p:last-child {
+            margin-bottom: 0;
+        }
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .tips-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        .tips-card h3 {
+            color: #ED8F03;
+            margin: 0 0 15px 0;
+        }
+        .tips-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .tips-card li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .tips-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ED8F03;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- Media Queries for Responsive Design --- */
+        @media (max-width: 768px) {
+            #resolution-guide-page .rules-grid, 
+            #resolution-guide-page .summary-list,
+            .speech-grid, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            #resolution-guide-page .header-card h1 { font-size: 1.8rem; }
+            #resolution-guide-page .section { padding: 20px; }
+            #resolution-guide-page .gemini-helper .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .flow-split-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .flow-split-branch {
+                width: 90%;
+            }
+            .speech-tabs {
+                gap: 5px;
+            }
+            .speech-tab-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            .portal-header {
+                flex-direction: column;
+            }
+            .portal-header-logo {
+                max-width: 250px;
+            }
+            .portal-header-mascot {
+                max-width: 120px;
+            }
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            #language-guide-page .guide-header h1 { font-size: 1.8rem; }
+            #language-guide-page .guide-header { padding: 25px; }
+            .section-title { font-size: 1.5rem; }
+            .phrases-grid { grid-template-columns: 1fr; }
+            .accordion-title { font-size: 1.1rem; }
+            .accordion-header { padding: 20px; }
+            .portal-header h2 { font-size: 1.3rem; }
+            .portal-header-logo {
+                max-width: 200px;
+            }
+            .portal-header-mascot {
+                max-width: 100px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- ==================== 1. PORTAL PAGE ==================== -->
+    <!-- =================================================================== -->
+    <!-- 1. PORTAL PAGE -->
+    <!-- =================================================================== -->
     <div id="portal-page" class="page active">
         <div class="container">
             <div class="portal-header">
+                <img src="https://drive.google.com/uc?export=view&id=1CBoYKAtY1ESonTFoTs3rnvxfbgdldAD5" alt="DAÇKA MUN CLUB Logo" class="portal-header-logo">
                 <div class="portal-header-content">
-                    <img src="https://drive.google.com/thumbnail?id=1CBoYKAtY1ESonTFoTs3rnvxfbgdldAD5" alt="DAÇKA MUN CLUB" class="portal-logo">
                     <h2>Delegate Resources</h2>
                     <p>Your portal for mastering MUN procedure and resolution writing.</p>
                 </div>
-                <img src="https://drive.google.com/thumbnail?id=1QX4CCYXy45xYsm86rQw3Fi5ltB5I4gec" alt="Daçka MUN Mascot" class="portal-mascot">
+                <img src="https://drive.google.com/uc?export=view&id=1QX4CCYXy45xYsm86rQw3Fi5ltB5I4gec" alt="DAÇKA MUN CLUB Mascot" class="portal-header-mascot">
             </div>
             
             <div class="portal-grid">
@@ -374,361 +917,8 @@
                 </a>
                 <a class="portal-card" onclick="showPage('speech-guide-page')">
                     <h3>🗣️ For/Against Speech Guide</h3>
-                    <p>Learn how to structure a persuasive speech with clear examples.</p>
+                    <p>Learn how to structure a persuasive speech with clear examples and key argument types.</p>
                 </a>
             </div>
         </div>
     </div>
-
-    <!-- ==================== 2. LANGUAGE GUIDE PAGE ==================== -->
-    <div id="language-guide-page" class="page">
-        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
-        <div class="guide-container">
-            <div class="guide-header">
-                <h1>🏛️ THIMUN Language Guide</h1>
-                <p>Master the Art of Parliamentary Discourse</p>
-            </div>
-            <div class="golden-rule">
-                <h2>🎯 Golden Rule</h2>
-                <p><strong>Always speak in third person!</strong></p>
-                <p>Never say "I think..." → Say "The delegate of [Country] believes..."</p>
-            </div>
-            <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(0)">
-                    <span class="accordion-title">⭐ Mastering the Third Person: The Rule in Action</span>
-                    <span class="accordion-icon">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <p class="point-description">This is the most important rule of formal debate.</p>
-                    <table class="example-table">
-                        <thead><tr><th>Common Situation</th><th>❌ Don't Say This</th><th>✅ Say This</th></tr></thead>
-                        <tbody>
-                            <tr><td>Stating an Opinion</td><td class="bad">"I think we should pass this."</td><td class="good">"The delegate of Japan believes..."</td></tr>
-                            <tr><td>Asking a Question</td><td class="bad">"My question is..."</td><td class="good">"The delegate of Kenya asks..."</td></tr>
-                             <tr><td>Making a Motion</td><td class="bad">"I want to motion..."</td><td class="good">"The delegate of Germany motions..."</td></tr>
-                             <tr><td>Referring to Another</td><td class="bad">"I agree with him."</td><td class="good">"The delegate concurs with the previous speaker."</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <h2 class="section-title">🗣️ Essential Phrases</h2>
-            <div class="phrases-grid">
-                <div class="phrase-card"><h3>📢 Opening Speech</h3><p>"Honourable Chair, fellow delegates..."</p></div>
-                <div class="phrase-card"><h3>💭 State Position</h3><p>"The delegate of Japan believes that..."</p></div>
-                <div class="phrase-card"><h3>❓ Ask Questions</h3><p>"Is the delegate aware that..."</p></div>
-                <div class="phrase-card"><h3>✅ Agreement</h3><p>"The delegate concurs with..."</p></div>
-                <div class="phrase-card"><h3>⚠️ Disagreement</h3><p>"The delegate respectfully disagrees..."</p></div>
-                <div class="phrase-card"><h3>🤝 Yield</h3><p>"The delegate yields to the Chair."</p></div>
-            </div>
-
-            <h2 class="section-title">🙋‍♀️ Points in THIMUN</h2>
-            <div class="accordion"><div class="accordion-header" onclick="toggleAccordion(1)"><span class="accordion-title">1️⃣ Point of Information</span><span class="accordion-icon">▼</span></div><div class="accordion-content"><p>Ask questions to the speaker if they yield. <strong>⚠️ Cannot interrupt.</strong></p></div></div>
-            <div class="accordion"><div class="accordion-header" onclick="toggleAccordion(2)"><span class="accordion-title">2️⃣ Point of Information to the Chair</span><span class="accordion-icon">▼</span></div><div class="accordion-content"><p>Ask the Chair about committee business (e.g. time, lunch). <strong>⚠️ Cannot interrupt.</strong></p></div></div>
-            <div class="accordion"><div class="accordion-header" onclick="toggleAccordion(3)"><span class="accordion-title">3️⃣ Point of Parliamentary Enquiry</span><span class="accordion-icon">▼</span></div><div class="accordion-content"><p>Ask about the Rules of Procedure. <strong>⚠️ Cannot interrupt.</strong></p></div></div>
-            <div class="accordion"><div class="accordion-header" onclick="toggleAccordion(4)"><span class="accordion-title">4️⃣ Point of Order</span><span class="accordion-icon">▼</span></div><div class="accordion-content"><p>Call attention to a procedural error. <strong>⚠️ Cannot interrupt speech.</strong></p></div></div>
-            <div class="accordion"><div class="accordion-header" onclick="toggleAccordion(5)"><span class="accordion-title">5️⃣ Point of Personal Privilege</span><span class="accordion-icon">▼</span></div><div class="accordion-content"><p>For discomfort (audibility). <strong>⚠️ Can interrupt ONLY if inaudible.</strong></p></div></div>
-            
-            <div class="tips-box">
-                <h2>💡 THIMUN Pro Tips</h2>
-                <ul class="tips-list">
-                    <li><strong>Respect the Chair:</strong> Their decisions are final.</li>
-                    <li><strong>Stand Up:</strong> Always stand when speaking.</li>
-                    <li><strong>Jacket On:</strong> Jackets must be worn when speaking.</li>
-                    <li><strong>No Interruptions:</strong> Only Personal Privilege (Audibility) can interrupt.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== 3. RESOLUTION GUIDE PAGE ==================== -->
-    <div id="resolution-guide-page" class="page">
-        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
-        <div class="guide-container">
-            <div class="header-card"><h1>Writing a Resolution</h1><p>(THIMUN Style)</p></div>
-            
-            <div class="section intro">
-                <h2>Structure</h2>
-                <p>A resolution is one long sentence. <strong>Preambulatory Clauses</strong> explain the "Why". <strong>Operative Clauses</strong> explain the "How".</p>
-            </div>
-            
-            <div class="section annotated-reso">
-                <h2>Annotated Sample</h2>
-                <div class="reso-text-block"><strong>FORUM:</strong> General Assembly<br><strong>QUESTION OF:</strong> Nuclear Disarmament...<br><strong>SUBMITTED BY:</strong> Japan</div>
-                <div class="reso-remark">Header must match the agenda exactly.</div>
-                
-                <div class="reso-text-block">
-                    <span style="font-weight:bold;">THE GENERAL ASSEMBLY,</span><br><br>
-                    <i>Noting</i> the smuggling of illicit goods<span style="color:red;font-weight:bold;">,</span><br><br>
-                    <i>Further noting</i> the need for action<span style="color:red;font-weight:bold;">,</span>
-                </div>
-                <div class="reso-remark"><strong>Preambulatory Clauses:</strong> Italicized starter, end with comma. No numbering.</div>
-
-                <div class="reso-text-block">
-                    1. <u>Calls for</u> Member States to sign the treaty<span style="color:red;font-weight:bold;">;</span><br><br>
-                    2. <u>Urges</u> the creation of a monitoring body with:<br>
-                    <div style="padding-left:20px;">a. monthly reports<span style="color:red;font-weight:bold;">,</span></div>
-                    <div style="padding-left:20px;">b. strict oversight<span style="color:red;font-weight:bold;">;</span></div>
-                    3. <u>Decides</u> to remain seized on the matter<span style="color:red;font-weight:bold;">.</span>
-                </div>
-                <div class="reso-remark"><strong>Operative Clauses:</strong> Numbered, underlined starter, end with semicolon. Last clause ends with a period.</div>
-            </div>
-
-            <div class="section gemini-helper">
-                <h2>✨ Resolution Helper</h2>
-                <p>Type a fact or idea below to formalize it.</p>
-                <textarea id="userInput" placeholder="e.g., 'we need to stop plastic pollution'"></textarea>
-                <div class="controls">
-                    <select id="apiMode">
-                        <option value="preamble">Preamble Clause</option>
-                        <option value="operative">Operative Clause</option>
-                    </select>
-                    <button id="generateBtn">✨ Generate</button>
-                </div>
-                <div id="loading-spinner"></div>
-                <div id="result-container"><button id="copy-btn">Copy</button><pre id="result-text"></pre></div>
-                <div id="error-box"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== 4. STUDENT OFFICER GUIDE ==================== -->
-    <div id="student-officer-guide-page" class="page">
-        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
-        <div class="guide-container">
-            <div class="header-card"><h1>🧑‍⚖️ Student Officer Guide</h1><p>How to Chair</p></div>
-            <div class="section chair-phrases">
-                <h2>Essential Chair Phrases</h2>
-                <div class="chair-dialogue-box"><span class="phrase">“The House will come to order.”</span></div>
-                <div class="chair-dialogue-box"><span class="phrase">“The chair calls upon the delegate of... to read the resolution.”</span></div>
-                <div class="chair-dialogue-box"><span class="phrase">“The delegate of... has the floor.”</span></div>
-                <div class="chair-dialogue-box"><span class="phrase">“All points are out of order until the speaker has concluded.”</span></div>
-                <div class="chair-dialogue-box"><span class="phrase">“We will now move into voting procedures. All points are out of order.”</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== 5. FLOW OF DEBATE GUIDE ==================== -->
-    <div id="flow-of-debate-page" class="page">
-        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
-        <div class="guide-container">
-            <div class="header-card"><h1>🌊 Flow of Debate</h1></div>
-            <div class="section">
-                <div class="flowchart">
-                    <div class="flow-step flow-step-main"><strong>Roll Call</strong></div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-step flow-step-main"><strong>Lobbying</strong></div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-step flow-step-secondary"><strong>Main Submitter Speech</strong></div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-step flow-step-secondary"><strong>Open Debate on Resolution</strong></div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-split-container">
-                        <div class="flow-split-branch"><div class="flow-step flow-step-action"><strong>Speeches</strong></div></div>
-                        <div class="flow-split-branch"><div class="flow-step flow-step-action"><strong>Amendments</strong></div></div>
-                    </div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-step flow-step-end"><strong>Vote</strong></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== 6. SPEECH GUIDE ==================== -->
-    <div id="speech-guide-page" class="page">
-        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
-        <div class="guide-container">
-            <div class="header-card"><h1>🗣️ Speech Guide</h1></div>
-            <div class="section">
-                <h2>Structure (60-90s)</h2>
-                <div class="flowchart">
-                    <div class="flow-step flow-step-secondary"><strong>1. Opening (10s)</strong>: "The delegation of X rises in support..."</div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-step flow-step-secondary"><strong>2. Key Points (50s)</strong>: 2-3 arguments with evidence.</div>
-                    <div class="flow-connector arrow"></div>
-                    <div class="flow-step flow-step-secondary"><strong>3. Closing (10s)</strong>: "We urge a vote in favor."</div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>Example Speeches</h2>
-                <div class="speech-tabs">
-                    <button class="speech-tab-btn active" onclick="openSpeechTab(event, 'climate')">Climate Finance</button>
-                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'privacy')">Digital Privacy</button>
-                </div>
-
-                <div id="climate" class="speech-tab-content active">
-                    <div class="speech-grid">
-                        <div class="speech-box speech-for">
-                            <h4>✅ Speech FOR</h4>
-                            <p>"The delegation of Bangladesh rises in <span class='adj'>strong</span> support..."</p>
-                            <p><span class='expr'>This resolution is not charity—it is climate justice.</span></p>
-                        </div>
-                        <div class="speech-box speech-against">
-                            <h4>❌ Speech AGAINST</h4>
-                            <p>"The delegation of Singapore must <span class='adj'>respectfully</span> oppose..."</p>
-                            <p><span class='expr'>This formula is neither fair nor effective.</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="privacy" class="speech-tab-content">
-                    <div class="speech-grid">
-                        <div class="speech-box speech-for">
-                            <h4>✅ Speech FOR</h4>
-                            <p>"Germany <span class='adj'>strongly</span> supports this <span class='adj'>essential</span> resolution..."</p>
-                            <p><span class='expr'>Privacy and progress are not mutually exclusive.</span></p>
-                        </div>
-                        <div class="speech-box speech-against">
-                            <h4>❌ Speech AGAINST</h4>
-                            <p>"The United States opposes this resolution..."</p>
-                            <p><span class='expr'>This clause creates dangerous censorship potential.</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- ==================== JAVASCRIPT ==================== -->
-    <script>
-        // Page Navigation
-        document.addEventListener('DOMContentLoaded', () => {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.style.display = 'none');
-            const portal = document.getElementById('portal-page');
-            if (portal) portal.style.display = 'block';
-            
-            initLanguageGuideAccordionsOnClick(); // Pre-init accordions
-            initSpeechGuideTabs();
-        });
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.style.display = 'block';
-                window.scrollTo(0, 0);
-                if (pageId === 'resolution-guide-page') initResolutionGuideAI();
-            }
-        }
-
-        // Accordions
-        let lastOpenedAccordion = -1;
-        function toggleAccordion(index) {
-            const headers = document.querySelectorAll('#language-guide-page .accordion-header');
-            const contents = document.querySelectorAll('#language-guide-page .accordion-content');
-
-            if (lastOpenedAccordion === index) {
-                if(headers[index]) headers[index].classList.remove('active');
-                if(contents[index]) { contents[index].classList.remove('active'); contents[index].style.maxHeight = null; contents[index].style.padding = null; }
-                lastOpenedAccordion = -1;
-                return;
-            }
-            if (lastOpenedAccordion !== -1 && headers[lastOpenedAccordion]) {
-                headers[lastOpenedAccordion].classList.remove('active');
-                if(contents[lastOpenedAccordion]) { contents[lastOpenedAccordion].classList.remove('active'); contents[lastOpenedAccordion].style.maxHeight = null; contents[lastOpenedAccordion].style.padding = null; }
-            }
-            if(headers[index] && contents[index]) {
-                headers[index].classList.add('active');
-                contents[index].classList.add('active');
-                contents[index].style.maxHeight = (contents[index].scrollHeight + 60) + 'px';
-                contents[index].style.padding = '30px';
-                contents[index].style.paddingTop = '20px';
-                lastOpenedAccordion = index;
-            }
-        }
-        
-        function initLanguageGuideAccordionsOnClick() {
-             const headers = document.querySelectorAll('#language-guide-page .accordion-header');
-             headers.forEach((header, index) => {
-                 if (!header.getAttribute('onclick')) header.setAttribute('onclick', `toggleAccordion(${index})`);
-             });
-        }
-
-        // AI Helper
-        let aiInitialized = false;
-        function initResolutionGuideAI() {
-            if (aiInitialized) return;
-            const page = document.getElementById('resolution-guide-page');
-            if (!page) return;
-            
-            const btn = page.querySelector('#generateBtn');
-            const input = page.querySelector('#userInput');
-            const mode = page.querySelector('#apiMode');
-            const spinner = page.querySelector('#loading-spinner');
-            const container = page.querySelector('#result-container');
-            const text = page.querySelector('#result-text');
-            const error = page.querySelector('#error-box');
-            const copy = page.querySelector('#copy-btn');
-
-            if (!btn) return;
-
-            btn.addEventListener('click', () => {
-                if (!input.value.trim()) { error.style.display = 'block'; error.textContent = 'Please enter text.'; return; }
-                btn.disabled = true; btn.innerHTML = 'Generating...'; spinner.style.display = 'block'; container.style.display = 'none'; error.style.display = 'none';
-                
-                const prompt = `Format this as a THIMUN ${mode.value} clause: "${input.value}". Return ONLY the HTML clause.`;
-                const apiKey = ""; 
-                
-                fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                })
-                .then(r => r.json())
-                .then(data => {
-                    text.innerHTML = data.candidates[0].content.parts[0].text;
-                    container.style.display = 'block';
-                })
-                .catch(e => { error.style.display = 'block'; error.textContent = 'Error: ' + e.message; })
-                .finally(() => { btn.disabled = false; btn.innerHTML = '✨ Generate'; spinner.style.display = 'none'; });
-            });
-            
-            copy.addEventListener('click', () => {
-                const ta = document.createElement('textarea');
-                ta.value = text.innerText;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                copy.textContent = 'Copied!';
-                setTimeout(() => copy.textContent = 'Copy', 2000);
-            });
-            
-            aiInitialized = true;
-        }
-
-        // Speech Tabs
-        function initSpeechGuideTabs() {
-            const tabs = document.querySelectorAll('.speech-tab-btn');
-            tabs.forEach(btn => {
-                 btn.addEventListener('click', (e) => {
-                      const targetId = btn.getAttribute('onclick').match(/'(.*?)'/)[1];
-                      openSpeechTab(e, targetId);
-                 });
-                 // Remove the onclick attribute to prevent double firing if any
-                 btn.removeAttribute('onclick');
-            });
-        }
-
-        function openSpeechTab(event, tabName) {
-            const page = document.getElementById('speech-guide-page');
-            const contents = page.querySelectorAll('.speech-tab-content');
-            const buttons = page.querySelectorAll('.speech-tab-btn');
-
-            contents.forEach(content => {
-                content.classList.remove('active');
-                content.style.display = 'none';
-            });
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            const targetContent = page.querySelector(`#${tabName}`);
-            if (targetContent) {
-                targetContent.style.display = 'block';
-                targetContent.classList.add('active');
-            }
-            event.currentTarget.classList.add('active');
-        }
-    </script>
-</body>
-</html>
