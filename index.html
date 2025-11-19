@@ -4,922 +4,795 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAÇKA MUN CLUB Delegate Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles --- */
+        /* --- Global Styles (Dark Theme) --- */
+        :root {
+            --bg-color: #222222; /* Dark background from image */
+            --card-bg: transparent;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent-green: #22c55e;
+            --accent-hover: #16a34a;
+            --accent-orange: #ED8F03;
+            --accent-purple: #805AD5;
+        }
+
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
-            padding: 20px;
+            padding: 40px;
             line-height: 1.6;
-            background: linear-gradient(135deg, #1c1c1c 0%, #333333 100%);
             min-height: 100vh;
         }
 
         .container {
-            max-width: 900px;
-            margin: 20px auto;
-            overflow: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        /* --- Page Hiding --- */
+        /* --- Portal Header Box --- */
+        .portal-header {
+            background-color: #ffffff; /* White header box */
+            border-radius: 16px;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-top: 6px solid var(--accent-green);
+        }
+
+        .header-content {
+            text-align: center;
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+
+        .header-title {
+            color: var(--accent-green);
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .header-subtitle {
+            color: #333; /* Dark text on white bg */
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .logo-img {
+            max-height: 80px; /* Logo size */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .mascot-img {
+            max-height: 100px; /* Mascot size */
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* --- Grid Layout --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for better readability on this layout */
+            gap: 30px;
+        }
+        
+        @media (min-width: 900px) {
+             .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .card {
+            background-color: transparent; /* Transparent background */
+            border-radius: 12px;
+            padding: 15px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            cursor: pointer;
+            border: 1px solid transparent; /* Invisible border for sizing */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ccc; /* Light grey title */
+            margin: 0;
+        }
+        
+        .card:hover .card-title {
+            color: #fff;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #666; /* Darker grey for description on dark bg */
+            margin: 0;
+            line-height: 1.5;
+            margin-left: 34px; /* Indent to align with title text */
+        }
+
+        /* --- Content Page Styles (Light mode inside) --- */
         .page {
             display: none;
+            animation: fadeIn 0.3s ease-out;
         }
-        .page.active {
-            display: block;
-        }
-        
-        /* Back Button */
-        .back-btn {
-            display: inline-block;
-            margin: 20px 0 0 20px;
-            padding: 10px 18px;
-            background: #444;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-        .back-btn:hover {
-            background: #2dc492;
-        }
+        .page.active { display: block; }
 
-        /* ===== 1. PORTAL PAGE STYLES ===== */
-        #portal-page {
-            padding: 20px;
-        }
-        .portal-header {
-            background: white;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 30px;
-            border-top: 5px solid #2dc492;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-        .portal-header-content {
-            flex: 1;
-            text-align: center;
-        }
-        .portal-header-logo {
-            max-width: 300px;
-            height: auto;
-        }
-        .portal-header-mascot {
-            max-width: 150px;
-            height: auto;
-        }
-        .portal-header h2 {
-            color: #2dc492;
-            font-size: 1.5rem;
-            margin: 5px 0 10px;
-            font-weight: 600;
-        }
-        .portal-header p {
-            color: #555;
-            font-size: 1.1rem;
-            margin: 0;
-        }
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-        .portal-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            text-decoration: none;
-            color: #333;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border-bottom: 4px solid #eee;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .portal-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-            border-bottom-color: #2dc492;
-        }
-        .portal-card h3 {
-            color: #333;
-            font-size: 1.6rem;
-            margin: 0 0 10px 0;
-        }
-        .portal-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #555;
-            margin: 0;
-        }
-
-        /* ===== 2. LANGUAGE GUIDE STYLES ===== */
-        #language-guide-page .guide-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        #language-guide-page .guide-header {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            margin-bottom: 30px;
-            animation: slideDown 0.6s ease-out;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        #language-guide-page .guide-header h1 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        #language-guide-page .guide-header p { color: #666; font-size: 1.1rem; }
-        .golden-rule {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            text-align: center;
-            animation: pulse 2.5s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-        .golden-rule h2 { font-size: 2rem; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-        .golden-rule p { font-size: 1.2rem; line-height: 1.8; }
-        .section-title {
-            color: white;
-            font-size: 2rem;
-            margin: 40px 0 20px 0;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .phrases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .phrase-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 5px solid #667eea;
-        }
-        .phrase-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
-        .phrase-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.1rem; }
-        .phrase-card p { color: #555; font-style: italic; line-height: 1.6; }
-        .accordion { margin-bottom: 15px; }
-        .accordion-header {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
+
+        .back-btn {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+            border: 1px solid #444;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: var(--accent-green); color: #121212; }
+
+        .guide-container {
+            background: #ffffff;
+            color: #333;
+            border-radius: 12px;
+            overflow: hidden;
+            padding-bottom: 40px;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, var(--accent-green), #15803d);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .guide-header h1 { margin: 0 0 10px 0; font-size: 2.5rem; }
+        .guide-header p { margin: 0; font-size: 1.2rem; opacity: 0.9; }
+
+        .section { padding: 30px 40px; border-bottom: 1px solid #eee; }
+        .section h2 { color: var(--accent-green); font-size: 1.8rem; margin-bottom: 20px; }
+
+        /* Accordions */
+        .accordion-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
         }
-        .accordion-header:hover { transform: translateX(5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
-        .accordion-header.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px 15px 0 0;
-        }
-        .accordion-title { font-size: 1.3rem; font-weight: 600; }
-        .accordion-icon { font-size: 1.5rem; transition: transform 0.3s ease; font-weight: bold; }
-        .accordion-header.active .accordion-icon { transform: rotate(180deg); }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            background: #fafaff;
-            border-radius: 0 0 15px 15px;
-            margin-top: -10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .accordion-content.active {
-            max-height: 5000px;
-            padding: 30px;
-            padding-top: 20px;
-        }
-        .point-description { color: #555; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.8; }
-        .dialogue-box {
-            background: linear-gradient(135deg, #e0f7fa 0%, #e1bee7 100%);
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            border-left: 5px solid #667eea;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .dialogue-label { font-weight: 700; color: #667eea; margin-bottom: 12px; font-size: 1.1rem; display: block; }
-        .dialogue-line { margin: 8px 0; padding: 8px 12px; background: rgba(255, 255, 255, 0.7); border-radius: 8px; line-height: 1.6; }
-        .speaker-you { color: #1976d2; font-weight: 700; }
-        .speaker-chair { color: #d32f2f; font-weight: 700; }
-        .speaker-delegate { color: #388e3c; font-weight: 700; }
-        .speaker-other { color: #f57c00; font-weight: 700; }
-        .warning-box { background: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 8px; }
-        .warning-box strong { color: #856404; }
-        .tips-box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); margin-top: 40px; }
-        .tips-box h2 { color: #667eea; font-size: 1.8rem; margin-bottom: 20px; text-align: center; }
-        .tips-list { list-style: none; padding-left: 0; }
-        .tips-list li { padding: 15px; margin: 10px 0; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 10px; font-size: 1.1rem; transition: transform 0.3s ease; }
-        .tips-list li:hover { transform: translateX(10px); }
-        .tips-list li::before { content: "✓"; color: #667eea; font-weight: bold; font-size: 1.3rem; margin-right: 10px; }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 2px dotted #667eea;
-            cursor: help;
-        }
-        .accordion-header.active .tooltip {
-             border-bottom: 2px dotted #fff;
-        }
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 250px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -125px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-        .example-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
-        .example-table th, .example-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            vertical-align: top;
-        }
-        .example-table th { background-color: #f2f2f2; color: #333; }
+        .accordion-header:hover { background: #f0f0f0; }
+        .accordion-header.active { background: var(--accent-green); color: white; border-color: var(--accent-green); }
+        .accordion-content { display: none; padding: 20px; border: 1px solid #eee; border-top: none; border-radius: 0 0 8px 8px; margin-top: -10px; margin-bottom: 20px; }
+        .accordion-content.active { display: block; }
+
+        /* Speech Guide */
+        .speech-tabs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; }
+        .speech-tab-btn { padding: 10px 20px; border: 1px solid #ddd; background: white; border-radius: 20px; cursor: pointer; white-space: nowrap; font-weight: 600; color: #666; transition: all 0.2s; }
+        .speech-tab-btn.active { background: #ED8F03; color: white; border-color: #ED8F03; }
+        .speech-content { display: none; }
+        .speech-content.active { display: block; }
+        .speech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .speech-box { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #ddd; }
+        .speech-for { border-left-color: #22c55e; }
+        .speech-against { border-left-color: #ef4444; }
+        .adj { color: #2563eb; font-weight: bold; }
+        .expr { color: #db2777; font-weight: bold; font-style: italic; }
+
+        /* Flowchart */
+        .flowchart { display: flex; flex-direction: column; align-items: center; padding: 20px; font-family: 'Inter', sans-serif; }
+        .flow-step { background: #f4f4f4; border: 1px solid #ddd; border-radius: 8px; padding: 15px 25px; text-align: center; font-size: 1rem; font-weight: 600; color: #333; box-shadow: 0 4px 8px rgba(0,0,0,0.05); max-width: 500px; width: 100%; margin: 10px 0; }
+        .flow-connector { height: 30px; position: relative; display: flex; justify-content: center; width: 100%; }
+        .flow-connector::after { content: '▼'; position: absolute; bottom: -8px; font-size: 1.2rem; color: #ccc; }
+        .flow-split-container { display: flex; justify-content: space-around; width: 100%; }
+        .flow-split-branch { display: flex; flex-direction: column; align-items: center; width: 45%; }
+
+        /* Gemini Helper */
+        .gemini-helper { background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf5 100%); padding: 20px; border-radius: 12px; }
+        .gemini-helper textarea { width: 100%; height: 100px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+        .gemini-helper .controls { margin-top: 10px; display: flex; gap: 10px; }
+        .gemini-helper button { padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        #result-container { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px; display: none; position: relative; }
+        #copy-btn { position: absolute; top: 5px; right: 5px; background: #eee; padding: 5px 10px; border-radius: 4px; cursor: pointer; border: none; }
+
+        /* Resolution Guide Specifics */
+        .clause-card { background: #f7fafc; border-left: 4px solid; padding: 12px 15px; border-radius: 6px; font-family: 'Courier New', monospace; font-weight: 600; margin-bottom: 10px; }
+        .reso-text-block { background: #fdfdfd; border: 1px solid #eee; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; margin: 15px 0; }
+        .reso-remark { background: #fffbe6; padding: 15px; margin: 0 0 20px 0; border-left: 4px solid #ffe58f; font-size: 0.95rem; }
+        
+        /* Student Officer Guide Specifics */
+        .chair-dialogue-box { background: #f8f9fa; border: 1px solid #e9ecef; border-left: 4px solid #08AEEA; border-radius: 8px; margin: 15px 0; padding: 15px 20px; }
+        .chair-dialogue-box .phrase { font-weight: 600; color: #333; display: block; margin-bottom: 5px; }
+        .chair-dialogue-box .dialogue { color: #555; padding-left: 15px; border-left: 3px solid #ced4da; margin-top: 8px; font-style: italic; font-size: 0.95rem; }
+
+        /* Additional styles from attachment */
+        .example-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .example-table th, .example-table td { padding: 8px 10px; border: 1px solid #eee; }
         .example-table .bad { background-color: #fff5f5; color: #c53030; }
         .example-table .good { background-color: #f0fff4; color: #276749; }
-        .example-table .bad::before { content: '❌ '; font-weight: bold; }
-        .example-table .good::before { content: '✅ '; font-weight: bold; }
 
-        /* ===== 3. RESOLUTION GUIDE STYLES ===== */
-        #resolution-guide-page {
-            background-color: #f4f7f6;
-            padding: 20px;
-        }
-        #resolution-guide-page .guide-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-        #resolution-guide-page .header-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        #resolution-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
-        #resolution-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
-        #resolution-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
-        #resolution-guide-page .section:last-child { border-bottom: none; }
-        #resolution-guide-page h2 { font-size: 1.75rem; margin-bottom: 20px; }
-        #resolution-guide-page .intro h2 { color: #5a67d8; }
-        #resolution-guide-page .header-info h2 { color: #d69e2e; }
-        #resolution-guide-page .preamble h2 { color: #3182ce; }
-        #resolution-guide-page .operative h2 { color: #38a169; }
-        #resolution-guide-page .rules h2 { color: #d53f8c; }
-        #resolution-guide-page .summary h2 { color: #6B46C1; }
-        #resolution-guide-page .gemini-helper h2 { color: #805AD5; }
-        #resolution-guide-page .annotated-reso h2 { color: #6B46C1; }
-        .reso-text-block {
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 15px 0;
-        }
-        .reso-remark {
-            background: #fefcbf;
-            border: 1px solid #f6e05e;
-            border-left: 4px solid #f6e05e;
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin: 0 0 25px 0;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        .reso-remark::before {
-            content: '💡 Remark: ';
-            font-weight: 700;
-            color: #d69e2e;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .reso-text-block .reso-preamble-header {
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .reso-text-block i {
-            font-style: italic;
-            color: #3182ce;
-            font-weight: bold;
-        }
-        .reso-text-block u {
-            text-decoration: underline;
-            color: #38a169;
-            font-weight: bold;
-        }
-        .reso-text-block .end-comma, .reso-text-block .end-semi, .reso-text-block .end-period {
-            color: #e53e3e;
-            font-weight: bold;
-        }
-        .reso-text-block .sub-clause { padding-left: 20px; }
-        .reso-text-block .sub-sub-clause { padding-left: 40px; }
-
-        #resolution-guide-page .clause-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        #resolution-guide-page .clause-card {
-            background: #f7fafc;
-            border-left: 4px solid;
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 600;
-        }
+        /* resolution specific */
+        #resolution-guide-page .header-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; text-align: center; }
         #resolution-guide-page .preamble .clause-card { border-color: #3182ce; }
         #resolution-guide-page .operative .clause-card { border-color: #38a169; }
-        #resolution-guide-page .rules-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        #resolution-guide-page .rule-card {
-            background: #fffaf0;
-            border: 1px solid #feebc8;
-            border-radius: 8px;
-            padding: 20px;
-        }
-        #resolution-guide-page .rule-card h3 { color: #c05621; margin-bottom: 10px; font-size: 1.2rem; }
-        #resolution-guide-page .example-box {
-            background: #fafafa;
-            border: 1px dashed #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        #resolution-guide-page .example-box .comment { color: #718096; font-style: italic; }
-        #resolution-guide-page .example-box .highlight { background-color: #fefcbf; font-weight: bold; }
-        #resolution-guide-page .example-box .end-comma { color: #e53e3e; font-weight: bold; }
-        #resolution-guide-page .example-box .end-semi { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
-        #resolution-guide-page .example-box .end-period { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
-        #resolution-guide-page .summary-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        #resolution-guide-page .summary-list ul { list-style: none; padding: 0; margin: 0; }
-        #resolution-guide-page .summary-list li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-        #resolution-guide-page .summary-list li::before {
-            position: absolute;
-            left: 0;
-            top: -2px;
-            font-size: 1.5rem;
-        }
-        #resolution-guide-page .do-list li::before { content: '✅'; }
-        #resolution-guide-page .dont-list li::before { content: '❌'; }
-        #resolution-guide-page .gemini-helper { background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf5 100%); }
-        #resolution-guide-page .gemini-helper textarea {
-            width: 100%;
-            height: 100px;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #cbd5e0;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            resize: vertical;
-        }
-        #resolution-guide-page .gemini-helper .controls { display: flex; gap: 15px; align-items: center; }
-        #resolution-guide-page .gemini-helper select {
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #cbd5e0;
-            font-size: 1rem;
-            flex-grow: 1;
-        }
-        #resolution-guide-page .gemini-helper button {
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            background: #805AD5;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        #resolution-guide-page .gemini-helper button:disabled { background: #b794f4; cursor: not-allowed; }
-        #resolution-guide-page .gemini-helper button:hover:not(:disabled) { background: #6B46C1; }
-        #resolution-guide-page #loading-spinner {
-            display: none;
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(128, 90, 213, 0.3);
-            border-radius: 50%;
-            border-top-color: #805AD5;
-            animation: spin 1s ease-in-out infinite;
-            margin: 20px auto 0;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        #resolution-guide-page #result-container {
-            margin-top: 20px;
-            background: #fafafa;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 15px;
-            display: none;
-            position: relative;
-        }
-        #resolution-guide-page #result-container pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
-            margin: 0;
-            padding-right: 70px;
-        }
-        #resolution-guide-page #copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 6px 10px;
-            font-size: 0.8rem;
-            background: #e2e8f0;
-            color: #4a5568;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #resolution-guide-page #copy-btn:hover { background: #cbd5e0; }
-        #resolution-guide-page #error-box {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            border: 1px solid #e53e3e;
-            background: #fff5f5;
-            color: #c53030;
-            border-radius: 8px;
-        }
+        .sub-clause { padding-left: 20px; }
+        .sub-sub-clause { padding-left: 40px; }
 
-        /* ===== 4. STUDENT OFFICER GUIDE STYLES ===== */
-        #student-officer-guide-page {
-            background: #fff;
-            padding: 20px;
-        }
-        #student-officer-guide-page .guide-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-        #student-officer-guide-page .header-card {
-            background: linear-gradient(135deg, #08AEEA 0%, #2AF598 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        #student-officer-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
-        #student-officer-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
-        #student-officer-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
-        #student-officer-guide-page .section:last-child { border-bottom: none; }
-        #student-officer-guide-page .section h2 { color: #08AEEA; }
-        #student-officer-guide-page .section p { font-size: 1.1rem; }
-        
-        #student-officer-guide-page .chair-dialogue-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-left: 4px solid #08AEEA;
-            border-radius: 8px;
-            margin: 15px 0;
-            padding: 15px 20px;
-        }
-        #student-officer-guide-page .chair-dialogue-box p {
-            margin: 0;
-            padding: 0;
-            font-size: 1rem;
-        }
-        #student-officer-guide-page .chair-dialogue-box .phrase {
-            font-weight: 600;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-        }
-        #student-officer-guide-page .chair-dialogue-box .dialogue {
-            color: #555;
-            padding-left: 15px;
-            border-left: 3px solid #ced4da;
-            margin-top: 8px;
-            font-style: italic;
-            font-size: 0.95rem;
-        }
-        #student-officer-guide-page .dialogue .speaker-chair {
-            color: #d32f2f;
-            font-weight: 700;
-        }
-         #student-officer-guide-page .dialogue .speaker-delegate {
-            color: #1976d2;
-            font-weight: 700;
-        }
-        
-        /* ===== 5. FLOW OF DEBATE GUIDE STYLES ===== */
-        #flow-of-debate-page {
-            background: #fff;
-            padding: 20px;
-        }
-        #flow-of-debate-page .guide-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-        #flow-of-debate-page .header-card {
-            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        #flow-of-debate-page .header-card h1 { margin: 0; font-size: 2.25rem; }
-        #flow-of-debate-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
-        #flow-of-debate-page .section { padding: 30px; }
-        #flow-of-debate-page .section h2 { color: #FF6A88; text-align: center; }
-        
-        .flowchart {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            font-family: 'Inter', sans-serif;
-        }
-        .flow-step, .flow-split-container, .flow-connector {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            margin: 10px 0;
-        }
-        .flow-step {
-            background: #f4f4f4;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px 25px;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            max-width: 500px;
-        }
-        .flow-step-main {
-            background: #fff0f0;
-            border-color: #ffb3b3;
-            color: #d6336c;
-        }
-        .flow-step-secondary {
-            background: #e6f7ff;
-            border-color: #b3e0ff;
-            color: #1976d2;
-        }
-        .flow-step-action {
-             background: #f3e8ff;
-            border-color: #d8b4fe;
-            color: #862e9c;
-        }
-        .flow-step-end {
-            background: #e6f7eb;
-            border-color: #b3e6cc;
-            color: #2f9e44;
-        }
-        .flow-connector {
-            height: 30px;
-            position: relative;
-        }
-        .flow-connector::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 100%;
-            background: #ccc;
-        }
-        .flow-connector.arrow::after {
-            content: '▼';
-            position: absolute;
-            bottom: -8px;
-            font-size: 1.2rem;
-            color: #ccc;
-        }
-        .flow-split-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-        .flow-split-branch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 45%;
-        }
-        .flow-split-branch .flow-step {
-            width: 100%;
-        }
-
-        /* ===== 6. FOR/AGAINST SPEECH GUIDE STYLES ===== */
-        #speech-guide-page {
-            background: #fff;
-            padding: 20px;
-        }
-        #speech-guide-page .guide-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-        #speech-guide-page .header-card {
-            background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        #speech-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
-        #speech-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
-        #speech-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
-        #speech-guide-page .section:last-child { border-bottom: none; }
-        #speech-guide-page .section h2 { color: #ED8F03; }
-        #speech-guide-page .section h3 { color: #333; font-size: 1.4rem; margin-bottom: 15px; }
-
-        .speech-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-        .speech-tab-btn {
-            padding: 10px 20px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #777;
-            position: relative;
-            bottom: -2px;
-            border-bottom: 2px solid transparent;
-            flex-shrink: 0;
-        }
-        .speech-tab-btn.active {
-            color: #ED8F03;
-            border-bottom-color: #ED8F03;
-        }
-        .speech-tab-content {
-            display: none;
-        }
-        .speech-tab-content.active {
-            display: block;
-        }
-        .reso-summary {
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            margin-bottom: 20px;
-        }
-        .reso-summary h4 {
-            margin: 0 0 10px 0;
-            color: #333;
-            font-family: 'Inter', sans-serif;
-        }
-        .reso-summary ul {
-            padding-left: 20px;
-            margin: 0;
-            font-size: 0.95rem;
-        }
-        .speech-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .speech-box {
-            border-radius: 8px;
-            padding: 20px;
-            background: #f8f9fa;
-        }
-        .speech-box h4 {
-            font-size: 1.2rem;
-            margin: 0 0 15px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid;
-        }
-        .speech-box.speech-for {
-            border-left: 5px solid #2f9e44;
-        }
-        .speech-box.speech-for h4 {
-            color: #2f9e44;
-            border-bottom-color: #b3e6cc;
-        }
-        .speech-box.speech-against {
-            border-left: 5px solid #e03131;
-        }
-        .speech-box.speech-against h4 {
-            color: #e03131;
-            border-bottom-color: #ffb3b3;
-        }
-        .speech-box p {
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-        .speech-box p:last-child {
-            margin-bottom: 0;
-        }
-        .tips-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .tips-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 25px;
-        }
-        .tips-card h3 {
-            color: #ED8F03;
-            margin: 0 0 15px 0;
-        }
-        .tips-card ul {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-        .tips-card li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-        .tips-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #ED8F03;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* --- Media Queries for Responsive Design --- */
         @media (max-width: 768px) {
-            #resolution-guide-page .rules-grid, 
-            #resolution-guide-page .summary-list,
-            .speech-grid, .tips-grid {
-                grid-template-columns: 1fr;
-            }
-            #resolution-guide-page .header-card h1 { font-size: 1.8rem; }
-            #resolution-guide-page .section { padding: 20px; }
-            #resolution-guide-page .gemini-helper .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .flow-split-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .flow-split-branch {
-                width: 90%;
-            }
-            .speech-tabs {
-                gap: 5px;
-            }
-            .speech-tab-btn {
-                padding: 10px;
-                font-size: 0.9rem;
-            }
-            .portal-header {
-                flex-direction: column;
-            }
-            .portal-header-logo {
-                max-width: 250px;
-            }
-            .portal-header-mascot {
-                max-width: 120px;
-            }
+            .portal-header { flex-direction: column; text-align: center; }
+            .portal-mascot { margin: 20px 0 0 0; }
+            .grid, .speech-grid { grid-template-columns: 1fr; }
+            .header-content { padding: 0; }
+            .flow-split-container { flex-direction: column; }
+            .flow-split-branch { width: 100%; }
         }
-        @media (max-width: 600px) {
-            body { padding: 10px; }
-            #language-guide-page .guide-header h1 { font-size: 1.8rem; }
-            #language-guide-page .guide-header { padding: 25px; }
-            .section-title { font-size: 1.5rem; }
-            .phrases-grid { grid-template-columns: 1fr; }
-            .accordion-title { font-size: 1.1rem; }
-            .accordion-header { padding: 20px; }
-            .portal-header h2 { font-size: 1.3rem; }
-            .portal-header-logo {
-                max-width: 200px;
-            }
-            .portal-header-mascot {
-                max-width: 100px;
-            }
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- =================================================================== -->
-    <!-- 1. PORTAL PAGE -->
-    <!-- =================================================================== -->
+    <!-- ==================== 1. PORTAL PAGE ==================== -->
     <div id="portal-page" class="page active">
         <div class="container">
+            <!-- Header Box -->
             <div class="portal-header">
-                <img src="https://drive.google.com/open?id=1CBoYKAtY1ESonTFoTs3rnvxfbgdldAD5&usp=drive_fs" alt="DAÇKA MUN CLUB Logo" class="portal-header-logo">
-                <div class="portal-header-content">
-                    <h2>Delegate Resources</h2>
-                    <p>Your portal for mastering MUN procedure and resolution writing.</p>
+                <!-- Left: Logo -->
+                <img src="https://drive.google.com/thumbnail?id=1CBoYKAtY1ESonTFoTs3rnvxfbgdldAD5" alt="DAÇKA MUN CLUB Logo" class="logo-img">
+                
+                <!-- Center: Text -->
+                <div class="header-content">
+                    <h2 class="header-title">Delegate Resources</h2>
+                    <p class="header-subtitle">Your portal for mastering MUN procedure and resolution writing.</p>
                 </div>
-                <img src="https://drive.google.com/open?id=1QX4CCYXy45xYsm86rQw3Fi5ltB5I4gec&usp=drive_fs" alt="DAÇKA MUN CLUB Mascot" class="portal-header-mascot">
+                
+                <!-- Right: Mascot -->
+                <img src="https://drive.google.com/thumbnail?id=1QX4CCYXy45xYsm86rQw3Fi5ltB5I4gec" alt="DAÇKA MUN CLUB Mascot" class="mascot-img">
             </div>
-            
-            <div class="portal-grid">
-                <a class="portal-card" onclick="showPage('language-guide-page')">
-                    <h3>🏛️ Language Guide</h3>
-                    <p>Learn the points, motions, and formal language of THIMUN parliamentary procedure.</p>
-                </a>
-                <a class="portal-card" onclick="showPage('resolution-guide-page')">
-                    <h3>📝 Resolution Guide</h3>
-                    <p>Master the format for writing a perfect resolution, with an AI-powered helper.</p>
-                </a>
-                <a class="portal-card" onclick="showPage('student-officer-guide-page')">
-                    <h3>🧑‍⚖️ Student Officer Guide</h3>
-                    <p>Learn how to Chair a committee, manage debate, and apply the rules of procedure.</p>
-                </a>
-                <a class="portal-card" onclick="showPage('flow-of-debate-page')">
-                    <h3>🌊 Flow of Debate</h3>
-                    <p>A visual step-by-step infographic of formal debate, from lobbying to voting.</p>
-                </a>
-                <a class="portal-card" onclick="showPage('speech-guide-page')">
-                    <h3>🗣️ For/Against Speech Guide</h3>
-                    <p>Learn how to structure a persuasive speech with clear examples and key argument types.</p>
-                </a>
+
+            <!-- Card Grid -->
+            <div class="grid">
+                <div class="card" onclick="showPage('language-guide-page')">
+                    <div class="card-icon-wrapper"><span class="card-icon">🏛️</span><span class="card-title">Language Guide</span></div>
+                    <p class="card-desc">Learn the points, motions, and formal language of THIMUN parliamentary procedure.</p>
+                </div>
+
+                <div class="card" onclick="showPage('resolution-guide-page')">
+                    <div class="card-icon-wrapper"><span class="card-icon">📝</span><span class="card-title">Resolution Guide</span></div>
+                    <p class="card-desc">Master the format for writing a perfect resolution, with an AI-powered helper.</p>
+                </div>
+
+                <div class="card" onclick="showPage('student-officer-guide-page')">
+                    <div class="card-icon-wrapper"><span class="card-icon">🧑‍⚖️</span><span class="card-title">Student Officer Guide</span></div>
+                    <p class="card-desc">Learn how to Chair a committee, manage debate, and apply the rules of procedure.</p>
+                </div>
+
+                <div class="card" onclick="showPage('flow-of-debate-page')">
+                    <div class="card-icon-wrapper"><span class="card-icon">🌊</span><span class="card-title">Flow of Debate</span></div>
+                    <p class="card-desc">A visual step-by-step infographic of formal debate, from lobbying to voting.</p>
+                </div>
+
+                <div class="card" onclick="showPage('speech-guide-page')">
+                    <div class="card-icon-wrapper"><span class="card-icon">🗣️</span><span class="card-title">For/Against Speech Guide</span></div>
+                    <p class="card-desc">Learn how to structure a persuasive speech with color-coded examples.</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- ==================== 2. LANGUAGE GUIDE PAGE ==================== -->
+    <div id="language-guide-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('portal-page')">← Back to Portal</button>
+            <div class="guide-container">
+                <div class="guide-header"><h1>🏛️ THIMUN Language Guide</h1><p>Master the Art of Parliamentary Discourse</p></div>
+                <div class="section">
+                    <h2>🎯 Golden Rule</h2>
+                    <p><strong>Always speak in third person!</strong> Never say "I think..." → say "The delegate of [Country] believes..."</p>
+                    <div class="accordion-header" onclick="toggleAccordion(this)">⭐ Mastering Third Person ▼</div>
+                    <div class="accordion-content">
+                        <table class="example-table">
+                            <tr><th>Situation</th><th>❌ Don't Say</th><th>✅ Say This</th></tr>
+                            <tr><td>Opinion</td><td class="bad">"I think..."</td><td class="good">"The delegate believes..."</td></tr>
+                            <tr><td>Motion</td><td class="bad">"I motion to..."</td><td class="good">"The delegate motions..."</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>🙋‍♀️ Points & Motions</h2>
+                    <div class="accordion-header" onclick="toggleAccordion(this)">1️⃣ Point of Information ▼</div>
+                    <div class="accordion-content"><p>Ask a question to the speaker. <strong>Cannot interrupt.</strong></p></div>
+                    <div class="accordion-header" onclick="toggleAccordion(this)">2️⃣ Point of Order ▼</div>
+                    <div class="accordion-content"><p>Procedural error. <strong>Cannot interrupt speech.</strong></p></div>
+                    <div class="accordion-header" onclick="toggleAccordion(this)">3️⃣ Point of Personal Privilege ▼</div>
+                    <div class="accordion-content"><p>Audibility. <strong>Can interrupt only if inaudible.</strong></p></div>
+                </div>
+                <div class="section">
+                    <h2>💡 THIMUN Pro Tips</h2>
+                    <ul>
+                        <li><strong>Jacket On:</strong> A delegate must have their jacket/blazer on anytime they stand to speak.</li>
+                        <li><strong>Respect the Chair:</strong> The Chair's rulings are final.</li>
+                        <li><strong>Stand Up:</strong> Always stand when speaking.</li>
+                        <li><strong>Be Diplomatic:</strong> Attack policies, not delegates.</li>
+                        <li><strong>One Thing at a Time:</strong> One resolution and one amendment at a time.</li>
+                        <li><strong>No Interruptions:</strong> Speakers cannot be interrupted except for audibility.</li>
+                        <li><strong>Voting is Sacred:</strong> No interruptions once voting begins except Point of Order related to the vote.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>🗣️ Common Chair Phrases</h2>
+                    <div class="chair-dialogue-box"><span class="phrase">“The House will come to order.”</span><p class="dialogue">Used to start the session or regain control.</p></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“The chair calls upon the delegate of [...] to read the resolution to the House.”</span></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“The House has heard the resolution. Is there a second?”</span></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“Your point is (not) well taken.”</span><p class="dialogue">Formal accept/reject of Point of Order.</p></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“The debate is now closed. We will move into voting procedures. All points are out of order.”</span><p class="dialogue">Makes all note-passing and discussion illegal until voting ends.</p></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“Will all those in favour... please raise their placards.”</span></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“With X votes in favour, Y votes against and Z abstaining, the motion has passed/failed.”</span></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 3. RESOLUTION GUIDE PAGE ==================== -->
+    <div id="resolution-guide-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('portal-page')">← Back to Portal</button>
+            <div class="guide-container">
+                <div class="header-card"><h1>A Simple Guide to Writing a Resolution</h1><p>(THIMUN Style)</p></div>
+
+                <div class="section intro">
+                    <h2>What is a Resolution?</h2>
+                    <p>A resolution is a single, long sentence that proposes a solution to a problem. It is split into two main parts:</p>
+                    <ul>
+                        <li><strong>Preambulatory Clauses (The "WHY"):</strong> Explains background and context.</li>
+                        <li><strong>Operative Clauses (The "HOW"):</strong> The action plan.</li>
+                    </ul>
+                </div>
+
+                <div class="section header-info">
+                    <h2>Part 1: The Header</h2>
+                    <p>This is the "address" of your resolution. It must be 100% correct.</p>
+                    <div class="example-box">
+                        <strong>FORUM:</strong> General Assembly First Committee <span class="comment">(Your committee)</span><br>
+                        <strong>QUESTION OF:</strong> The role of diamonds in fueling conflict... <span class="comment">(Topic exactly as written)</span><br>
+                        <strong>SUBMITTED BY:</strong> Saint Vincent and the Grenadines <span class="comment">(Main author)</span><br>
+                        <strong>CO-SUBMITTERS:</strong> Argentina, Australia, Canada, France... <span class="comment">(Alphabetical)</span>
+                    </div>
+                </div>
+
+                <div class="section preamble">
+                    <h2>Part 2: The Preamble (The "WHY")</h2>
+                    <p>This is the introduction. Remember:</p>
+                    <ul>
+                        <li>Start with the full committee name in ALL CAPS (e.g., <code>THE DISARMAMENT COMMISSION,</code>)</li>
+                        <li>Clause starters are <i>italicized</i>.</li>
+                        <li>Every clause ends with a <strong>comma (,)</strong>.</li>
+                    </ul>
+
+                    <p>Here are common starters:</p>
+                    <div class="clause-grid">
+                        <div class="clause-card"><i>Aware of</i></div>
+                        <div class="clause-card"><i>Bearing in mind</i></div>
+                        <div class="clause-card"><i>Deeply concerned</i></div>
+                        <div class="clause-card"><i>Declaring</i></div>
+                        <div class="clause-card"><i>Emphasizing</i></div>
+                        <div class="clause-card"><i>Expressing its satisfaction</i></div>
+                        <div class="clause-card"><i>Guided by</i></div>
+                        <div class="clause-card"><i>Having examined</i></div>
+                        <div class="clause-card"><i>Keeping in mind</i></div>
+                        <div class="clause-card"><i>Noting with regret</i></div>
+                        <div class="clause-card"><i>Reaffirming</i></div>
+                        <div class="clause-card"><i>Recalling</i></div>
+                    </div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Full Example Preamble ▼</div>
+                    <div class="accordion-content">
+                        <div class="example-box">
+                            <i>Aware of</i> that 4% of diamonds produced are classified as "conflict or blood diamonds"<span class="end-comma">,</span><br><br>
+                            <i>Recognizing</i> the Kimberley Process Certification Scheme (KPCS) as an internationally recognized certification system<span class="end-comma">,</span><br><br>
+                            <i>Further recognizing</i> that the KPCS is lacking a comprehensive system for monitoring where diamonds are mined, how they are mined and how proceeds are used<span class="end-comma">,</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section operative">
+                    <h2>Part 3: The Operative (The "HOW")</h2>
+                    <p>Remember:</p>
+                    <ul>
+                        <li>Clauses are <strong>numbered (1, 2, 3...)</strong>.</li>
+                        <li>Clause starters are <u>underlined</u>.</li>
+                        <li>Every clause ends with a <strong>semicolon (;)</strong>, except the last which ends with a period (.)</li>
+                    </ul>
+
+                    <p>Common operative starters:</p>
+                    <div class="clause-grid">
+                        <div class="clause-card"><u>Approves</u></div>
+                        <div class="clause-card"><u>Asks</u></div>
+                        <div class="clause-card"><u>Authorizes</u></div>
+                        <div class="clause-card"><u>Calls for</u></div>
+                        <div class="clause-card"><u>Urges</u></div>
+                        <div class="clause-card"><u>Requests</u></div>
+                        <div class="clause-card"><u>Encourages</u></div>
+                        <div class="clause-card"><u>Recommends</u></div>
+                    </div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Operative Example & Sub-clauses ▼</div>
+                    <div class="accordion-content">
+                        <div class="example-box">
+                            1. <u>Calls for</u> all relevant Member States to sign and ratify the KPCS to promote cooperation and awareness of trade<span class="end-semi">;</span><br><br>
+                            2. <u>Further calls for</u> all relevant nations which are withholding signature... to request funds from IGOs such as IMF and World Bank<span class="end-semi">;</span><br><br>
+                            3. <u>Asks for</u> the creation of the Collation for Stopping Conflict Diamonds (CSCD), which would work with Member States in order to stop illicit diamond transportation by:<br>
+                            <div class="sub-clause">a. monitoring who is buying and selling the diamonds</div>
+                            <div class="sub-clause">b. ensuring the methods are legal according to KPCS</div>
+                            <div class="sub-clause">c. sending submitted proof of diamond proceeds to ensure they are not funding armed conflicts</div>
+                            <div class="sub-clause">d. sending an observer team in the first year following ratification<span class="end-semi">;</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section annotated-reso">
+                    <h2>Annotated Sample Resolution</h2>
+                    <p>Full example (trimmed for readability) — highlights and remarks included.</p>
+                    <div class="reso-text-block">
+                        <strong>FORUM:</strong> Disarmament Sub-Commission 1<br>
+                        <strong>QUESTION OF:</strong> The role of diamonds in fueling conflict: breaking the link between the illicit transaction of rough diamonds and armed conflict<br>
+                        <strong>SUBMITTED BY:</strong> Saint Vincent and the Grenadines<br>
+                        <strong>CO-SUBMITTERS:</strong> Argentina, Australia, Canada, France, Germany, India, Indonesia, Japan, Mexico, Saudi Arabia, South Africa, Türkiye, United Kingdom, United States of America
+                    </div>
+                    <div class="reso-remark">The <strong>Header</strong> must be perfect. The FORUM and QUESTION OF must match the official agenda exactly. CO-SUBMITTERS must be listed in alphabetical order.</div>
+
+                    <div class="reso-text-block">
+                        <span class="reso-preamble-header">THE DISARMAMENT COMMISSION,</span><br><br>
+                        <i>Noting</i> that smuggling of illicit rough diamonds accounts for over 50% of the diamond trade and is estimated at 100 million USD per year<span class="end-comma">,</span><br><br>
+                        <i>Further noting</i> illicit rough diamonds are used as "conflict or blood diamonds" to finance conflicts<span class="end-comma">,</span><br><br>
+                        <i>Aware</i> that 4% of diamonds produced are classified as conflict diamonds which are enough to purchase weapons to destabilize regions<span class="end-comma">,</span>
+                    </div>
+
+                    <div class="reso-remark">Preambulatory Clauses define the problem, cite scale, and avoid repeating starters.</div>
+
+                    <div class="reso-text-block">
+                        <i>Recognizing</i> the Kimberley Process Certification Scheme (KPCS), established in 2003<span class="end-comma">,</span><br><br>
+                        1. <u>Calls for</u> all relevant Member States to sign and ratify the KPCS<span class="end-semi">;</span><br><br>
+                        2. <u>Further calls for</u> nations withholding signature to request funds from IGOs<span class="end-semi">;</span><br><br>
+                        3. <u>Asks for</u> the creation of the Collation for Stopping Conflict Diamonds (CSCD), which will:<br>
+                        <div class="sub-clause">a. monitor national diamond trades</div>
+                        <div class="sub-clause">b. ensure legality of mining methods</div>
+                        <div class="sub-clause">c. submit proof of proceeds to CSCD<span class="end-semi">;</span></div>
+                    </div>
+
+                    <div class="reso-remark">Operative clauses provide actions; sub-clauses use colons and lists. The last operative clause should end with a period.</div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Resolution Do's and Don'ts ▼</div>
+                    <div class="accordion-content">
+                        <div class="rule-card">
+                            <h3>Do...</h3>
+                            <ul>
+                                <li>Write the entire resolution as one sentence.</li>
+                                <li>End preambulatory clauses with a comma.</li>
+                                <li>End operative clauses with a semicolon; last clause ends with a period.</li>
+                                <li>List co-submitters alphabetically.</li>
+                            </ul>
+                        </div>
+                        <div class="rule-card">
+                            <h3>Don't...</h3>
+                            <ul>
+                                <li>Use personal pronouns (I, we, our).</li>
+                                <li>Repeat clause starters without 'Further'.</li>
+                                <li>Have lists with a single item (a. requires b.).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section gemini-helper">
+                    <h2>✨ Resolution Helper</h2>
+                    <textarea id="userInput" placeholder="e.g., 'we need to stop plastic pollution'"></textarea>
+                    <div class="controls">
+                        <select id="apiMode"><option value="preamble">Preamble</option><option value="operative">Operative</option></select>
+                        <button id="generateBtn">✨ Generate</button>
+                    </div>
+                    <div id="loading-spinner" style="display:none;">Generating...</div>
+                    <div id="result-container">
+                        <button id="copy-btn">Copy</button>
+                        <pre id="result-text"></pre>
+                    </div>
+                    <div id="error-box" style="display:none;color:#c53030;margin-top:10px;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 4. STUDENT OFFICER GUIDE PAGE ==================== -->
+    <div id="student-officer-guide-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('portal-page')">← Back to Portal</button>
+            <div class="guide-container">
+                <div class="guide-header"><h1>🧑‍⚖️ Student Officer Guide</h1></div>
+                <div class="section">
+                    <h2>Chair Phrases</h2>
+                    <div class="chair-dialogue-box"><span class="phrase">“The House will come to order.”</span></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“The chair calls upon the delegate...”</span></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“The chair proposes an extension of debate time by 5 minutes for and 5 minutes against the motion.”</span></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“The debate is now closed. We will move into voting procedures. All points are out of order.”</span><p class="dialogue">Critical announcement — all note-passing and discussion illegal until voting ends.</p></div>
+                    <div class="chair-dialogue-box"><span class="phrase">“Clapping is (not) in order.”</span><p class="dialogue">Used to maintain decorum after a vote.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 5. FLOW OF DEBATE GUIDE PAGE ==================== -->
+    <div id="flow-of-debate-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('portal-page')">← Back to Portal</button>
+            <div class="guide-container">
+                <div class="guide-header"><h1>🌊 Flow of Debate</h1></div>
+                <div class="section" style="text-align:center;">
+                    <div class="flow-step">Roll Call</div><div class="flow-connector arrow"></div>
+                    <div class="flow-step">Lobbying</div><div class="flow-connector arrow"></div>
+                    <div class="flow-step">Open Debate</div><div class="flow-connector arrow"></div>
+                    <div class="flow-step">Vote</div>
+                </div>
+
+                <div class="section">
+                    <h2>The Debate Process: An Infographic</h2>
+                    <div class="flowchart">
+                        <div class="flow-step flow-step-main"><strong>Delegates Enter & Roll Call</strong><br/>(Session Begins)</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-main"><strong>Lobbying (First Session)</strong><br/>Delegates find co-submitters and merge resolutions.</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-main"><strong>Chair Announces Resolution</strong><br/>"The next resolution to be debated is 1.1..."</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-secondary"><strong>Main Submitter is Called</strong><br/>Reads operative clauses and gives 3 min. speech.</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-action"><strong>Main Submitter Yields</strong><br/>(e.g., to Points of Information or back to the Chair)</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-secondary"><strong>Chair Sets Debate Time & Opens Floor</strong></div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-split-container">
+                            <div class="flow-split-branch">
+                                <div class="flow-step flow-step-secondary"><strong>Delegate is Recognized & Speaks</strong></div>
+                                <div class="flow-connector arrow"></div>
+                                <div class="flow-step flow-step-action"><strong>Delegate Yields</strong></div>
+                            </div>
+                            <div class="flow-split-branch">
+                                <div class="flow-step flow-step-action"><strong>Delegate is Recognized & Moves an Amendment</strong></div>
+                                <div class="flow-connector arrow"></div>
+                                <div class="flow-step flow-step-action"><strong>Chair Sets Time & Votes on Amendment</strong></div>
+                            </div>
+                        </div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-main"><strong>Debate Time Elapses or Motion to Close Debate Passes</strong></div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-end"><strong>Voting Procedures</strong><br/>(Chair closes debate and the House votes)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 6. SPEECH GUIDE PAGE ==================== -->
+    <div id="speech-guide-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('portal-page')">← Back to Portal</button>
+            <div class="guide-container">
+                <div class="header-card" style="background: linear-gradient(135deg, #FFB75E, #ED8F03);">
+                    <h1>🗣️ For/Against Speech Guide</h1>
+                    <p>How to Structure a Persuasive Speech</p>
+                </div>
+
+                <div class="section">
+                    <h2>How to Structure a Speech (60-90 Seconds)</h2>
+                    <div class="flowchart">
+                        <div class="flow-step flow-step-secondary" style="max-width: 600px;"><strong>1. Opening (10 sec):</strong> State your position clearly.</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-secondary" style="max-width: 600px;"><strong>2. Key Points (40-60 sec):</strong> Give 2-3 strong arguments.</div>
+                        <div class="flow-connector arrow"></div>
+                        <div class="flow-step flow-step-secondary" style="max-width: 600px;"><strong>3. Closing (10 sec):</strong> Reinforce your position and call to action.</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Example Speeches</h2>
+                    <div class="speech-tabs">
+                        <button class="speech-tab-btn active" onclick="openSpeechTab(event, 'climate')">Climate Finance</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'privacy')">Digital Privacy</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'education')">Education</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'ai')">AI Regulation</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'vaccine')">Vaccine</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'fossil')">Fossil Fuels</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'pmc')">PMCs</button>
+                        <button class="speech-tab-btn" onclick="openSpeechTab(event, 'untax')">UN Tax</button>
+                    </div>
+
+                    <div id="climate" class="speech-content active">
+                        <h3>Topic: Global Climate Adaptation Fund</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (Bangladesh)</h4>
+                                <p>"The delegation of Bangladesh rises in <span class="adj">strong</span> support. This fund addresses a <span class="adj">fundamental</span> injustice. <span class="expr">This is not charity—it is climate justice.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (Singapore)</h4>
+                                <p>"Singapore must <span class="adj">respectfully</span> oppose. The commitment is <span class="adj">economically unrealistic</span>. <span class="expr">This formula is neither fair nor effective.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="privacy" class="speech-content">
+                        <h3>Topic: Digital Privacy</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (Germany)</h4>
+                                <p>"Germany <span class="adj">strongly</span> supports this <span class="adj">essential</span> resolution. <span class="expr">Privacy and progress are not mutually exclusive.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (USA)</h4>
+                                <p>"The United States <span class="adj">firmly</span> opposes this. <span class="expr">This creates dangerous censorship potential.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- other tabs follow same structure (education, ai, etc.) -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // --- Global Navigation Functions ---
+        
+        window.showPage = function(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show target page
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0,0);
+                
+                // Init AI if needed
+                if(pageId === 'resolution-guide-page') initResolutionAI();
+                if(pageId === 'speech-guide-page') initSpeechGuideTabs();
+            }
+        };
+
+        window.toggleAccordion = function(elementOrIndex) {
+            // elementOrIndex can be the element (from onclick) or numeric index (legacy)
+            let header;
+            if(typeof elementOrIndex === 'number') {
+                const headers = document.querySelectorAll('.accordion-header');
+                header = headers[elementOrIndex];
+            } else {
+                header = elementOrIndex;
+            }
+            if(!header) return;
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            if (!content) return;
+            content.classList.toggle('active');
+        };
+
+        window.openSpeechTab = function(event, tabName) {
+            const contents = document.querySelectorAll('.speech-content');
+            contents.forEach(c => c.classList.remove('active'));
+            const btns = document.querySelectorAll('.speech-tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            const target = document.getElementById(tabName);
+            if (target) target.classList.add('active');
+            event.currentTarget.classList.add('active');
+        };
+
+        // Resolution AI Helper (mock, then enhanced)
+        let aiInit = false;
+        function initResolutionAI() {
+            if(aiInit) return;
+            const btn = document.getElementById('generateBtn');
+            const errorBox = document.getElementById('error-box');
+            const loading = document.getElementById('loading-spinner');
+            const resultContainer = document.getElementById('result-container');
+            const resultText = document.getElementById('result-text');
+            const copyBtn = document.getElementById('copy-btn');
+
+            function copyToClipboard(text) {
+                const temp = document.createElement('textarea');
+                temp.value = text;
+                document.body.appendChild(temp);
+                temp.select();
+                try { document.execCommand('copy'); copyBtn.textContent = 'Copied!'; setTimeout(()=>copyBtn.textContent='Copy',2000);} catch(e){console.error(e);} finally { document.body.removeChild(temp); }
+            }
+
+            if(btn) {
+                btn.addEventListener('click', () => {
+                    const input = document.getElementById('userInput').value.trim();
+                    const mode = document.getElementById('apiMode').value;
+                    if(!input) { errorBox.textContent = 'Please enter a fact or idea first.'; errorBox.style.display='block'; return; }
+                    btn.disabled = true; loading.style.display='block'; resultContainer.style.display='none'; errorBox.style.display='none';
+                    // Simulate API
+                    setTimeout(()=>{
+                        const generated = mode === 'preamble' ? `<i>Noting</i> ${input}<span class="end-comma">,</span>` : `1. <u>Calls for</u> ${input}<span class="end-semi">;</span>`;
+                        resultText.innerText = generated;
+                        resultContainer.style.display = 'block';
+                        btn.disabled = false; loading.style.display='none';
+                    }, 800);
+                });
+            }
+
+            if(copyBtn) copyBtn.addEventListener('click', ()=>{ const t = document.getElementById('result-text').innerText; copyToClipboard(t); });
+
+            aiInit = true;
+        }
+
+        // Speech tabs init (ensure event binding for dynamically added content)
+        let speechGuideTabsInitialized = false;
+        function initSpeechGuideTabs() {
+            if(speechGuideTabsInitialized) return;
+            const page = document.getElementById('speech-guide-page');
+            if(!page) return;
+            const btns = page.querySelectorAll('.speech-tab-btn');
+            btns.forEach(btn=>{
+                if(!btn.dataset.listenerAttached) {
+                    btn.addEventListener('click', (e)=>{
+                        const tabName = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                        openSpeechTab(e, tabName);
+                    });
+                    btn.dataset.listenerAttached = 'true';
+                }
+            });
+            speechGuideTabsInitialized = true;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Portal Loaded');
+            // Ensure only portal is showing initially
+            document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+            document.getElementById('portal-page').classList.add('active');
+        });
+    </script>
+</body>
+</html>
