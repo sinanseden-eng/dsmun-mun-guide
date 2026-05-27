@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MUN Pro — DAÇKA MUN CLUB Delegate Companion</title>
+    <meta name="description" content="The ultimate Model United Nations companion app for DAÇKA MUN CLUB delegates. Master parliamentary procedure, write resolutions, and practice speeches.">
+    <meta name="theme-color" content="#0f0f11">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== SPLASH SCREEN ========== -->
+    <div id="splash" class="splash">
+        <div class="splash-logo">🏛️</div>
+        <div class="splash-title">MUN Pro</div>
+        <div class="splash-subtitle">DAÇKA MUN CLUB</div>
+        <div class="splash-loader"></div>
+    </div>
+
+    <!-- ========== APP CONTAINER ========== -->
+    <div class="app-container">
+
+        <!-- ==================== 1. PORTAL / HOME ==================== -->
+        <div id="portal-page" class="page active">
+            <!-- Header -->
+            <div class="portal-header">
+                <img src="https://drive.google.com/thumbnail?id=1CBoYKAtY1ESonTFoTs3rnvxfbgdldAD5" alt="DAÇKA MUN CLUB Logo" class="logo-img" crossorigin="anonymous">
+                <div class="header-content">
+                    <h1 class="header-title">Delegate Resources</h1>
+                    <p class="header-subtitle">Your portal for mastering MUN procedure and resolution writing.</p>
+                </div>
+                <img src="https://drive.google.com/thumbnail?id=1QX4CCYXy45xYsm86rQw3Fi5ltB5I4gec" alt="Mascot" class="mascot-img" crossorigin="anonymous">
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="card-grid">
+                <div class="feature-card" data-page="language-guide-page">
+                    <span class="card-emoji">🏛️</span>
+                    <h3 class="card-title">Language Guide</h3>
+                    <p class="card-desc">THIMUN points, motions & formal language</p>
+                </div>
+                <div class="feature-card" data-page="resolution-guide-page">
+                    <span class="card-emoji">📜</span>
+                    <h3 class="card-title">Resolution Guide</h3>
+                    <p class="card-desc">Master the format for a perfect resolution</p>
+                </div>
+                <div class="feature-card" data-page="resolution-builder-page">
+                    <span class="card-emoji">📝</span>
+                    <h3 class="card-title">Resolution Builder</h3>
+                    <p class="card-desc">Write & validate resolutions with live syntax checking</p>
+                </div>
+                <div class="feature-card" data-page="speech-guide-page">
+                    <span class="card-emoji">🗣️</span>
+                    <h3 class="card-title">Speech Studio</h3>
+                    <p class="card-desc">Structure persuasive speeches with examples</p>
+                </div>
+                <div class="feature-card" data-page="chair-sim-page">
+                    <span class="card-emoji">🧑‍⚖️</span>
+                    <h3 class="card-title">Chair Simulator</h3>
+                    <p class="card-desc">Practice Chair dialogue with audio playback</p>
+                </div>
+                <div class="feature-card" data-page="flow-of-debate-page">
+                    <span class="card-emoji">🌊</span>
+                    <h3 class="card-title">Flow of Debate</h3>
+                    <p class="card-desc">Visual step-by-step debate infographic</p>
+                </div>
+                <div class="feature-card" data-page="quiz-page">
+                    <span class="card-emoji">🎯</span>
+                    <h3 class="card-title">ROP Quiz</h3>
+                    <p class="card-desc">Test your Rules of Procedure knowledge</p>
+                </div>
+                <div class="feature-card" data-page="timer-page">
+                    <span class="card-emoji">⏱️</span>
+                    <h3 class="card-title">Timer & Placard</h3>
+                    <p class="card-desc">Debate clock & virtual country placard</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 2. LANGUAGE GUIDE ==================== -->
+        <div id="language-guide-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header">
+                    <h1>🏛️ THIMUN Language Guide</h1>
+                    <p>Master the Art of Parliamentary Discourse</p>
+                </div>
+
+                <!-- Golden Rule -->
+                <div class="section">
+                    <h2>🎯 Golden Rule</h2>
+                    <p><strong>Always speak in third person!</strong> Never say "I think..." → say "The delegate of [Country] believes..."</p>
+                    <div class="accordion-header">⭐ Mastering Third Person <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <table class="example-table">
+                            <tr><th>Situation</th><th>❌ Don't Say</th><th>✅ Say This</th></tr>
+                            <tr><td>Opinion</td><td class="bad">"I think..."</td><td class="good">"The delegate believes..."</td></tr>
+                            <tr><td>Motion</td><td class="bad">"I motion to..."</td><td class="good">"The delegate motions..."</td></tr>
+                            <tr><td>Agreement</td><td class="bad">"We agree with..."</td><td class="good">"The delegation concurs with..."</td></tr>
+                            <tr><td>Question</td><td class="bad">"I want to ask..."</td><td class="good">"The delegate wishes to pose a question..."</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Points & Motions -->
+                <div class="section">
+                    <h2>🙋‍♀️ Points & Motions</h2>
+                    <div class="accordion-header">1️⃣ Point of Information <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <p>Ask a question to the speaker. <strong>Cannot interrupt a speech.</strong> The speaker must first yield to Points of Information.</p>
+                        <p><strong>How to use:</strong> "The delegate of [Country] would like to raise a Point of Information to the speaker."</p>
+                    </div>
+                    <div class="accordion-header">2️⃣ Point of Order <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <p>Used when there is a procedural error. <strong>Cannot interrupt a speech.</strong></p>
+                        <p><strong>How to use:</strong> "Point of Order, the delegate believes the proper procedure has not been followed regarding..."</p>
+                        <p>The Chair will respond: "Your point is well taken" or "Your point is not well taken."</p>
+                    </div>
+                    <div class="accordion-header">3️⃣ Point of Personal Privilege <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <p>Used for audibility issues only. <strong>This is the ONLY point that can interrupt a speech</strong> — and only if the delegate cannot hear the speaker.</p>
+                        <p><strong>How to use:</strong> "Point of Personal Privilege — the delegate cannot hear the speaker."</p>
+                    </div>
+                    <div class="accordion-header">4️⃣ Motion to Close Debate <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <p>Ends debate and moves to voting. Requires a vote by the House.</p>
+                        <p><strong>How to use:</strong> "The delegate motions to close debate on the resolution."</p>
+                    </div>
+                    <div class="accordion-header">5️⃣ Motion to Extend Debate <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <p>Requests more debate time. Requires a vote.</p>
+                        <p><strong>How to use:</strong> "The delegate motions to extend debate time by 5 minutes for and 5 minutes against."</p>
+                    </div>
+                </div>
+
+                <!-- Pro Tips -->
+                <div class="section">
+                    <h2>💡 THIMUN Pro Tips</h2>
+                    <ul>
+                        <li><strong>Jacket On:</strong> A delegate must have their jacket/blazer on anytime they stand to speak.</li>
+                        <li><strong>Respect the Chair:</strong> The Chair's rulings are final.</li>
+                        <li><strong>Stand Up:</strong> Always stand when speaking.</li>
+                        <li><strong>Be Diplomatic:</strong> Attack policies, not delegates.</li>
+                        <li><strong>One Thing at a Time:</strong> One resolution and one amendment at a time.</li>
+                        <li><strong>No Interruptions:</strong> Speakers cannot be interrupted except for audibility.</li>
+                        <li><strong>Voting is Sacred:</strong> No interruptions once voting begins except Point of Order related to the vote.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 3. RESOLUTION GUIDE ==================== -->
+        <div id="resolution-guide-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header purple">
+                    <h1>📜 Resolution Writing Guide</h1>
+                    <p>THIMUN Style — From Header to Final Period</p>
+                </div>
+
+                <div class="section">
+                    <h2>What is a Resolution?</h2>
+                    <p>A resolution is a single, long sentence that proposes a solution to a problem. It is split into two main parts:</p>
+                    <ul>
+                        <li><strong>Preambulatory Clauses (The "WHY"):</strong> Explains background and context.</li>
+                        <li><strong>Operative Clauses (The "HOW"):</strong> The action plan.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Part 1: The Header</h2>
+                    <p>This is the "address" of your resolution. It must be 100% correct.</p>
+                    <div class="reso-text-block">
+                        <strong>FORUM:</strong> General Assembly First Committee<br>
+                        <strong>QUESTION OF:</strong> The role of diamonds in fueling conflict...<br>
+                        <strong>SUBMITTED BY:</strong> Saint Vincent and the Grenadines<br>
+                        <strong>CO-SUBMITTERS:</strong> Argentina, Australia, Canada, France...
+                    </div>
+                    <div class="reso-remark">The Header must be perfect. FORUM and QUESTION OF must match the official agenda exactly. CO-SUBMITTERS must be listed in alphabetical order.</div>
+                </div>
+
+                <div class="section">
+                    <h2>Part 2: Preamble (The "WHY")</h2>
+                    <p>This is the introduction. Remember:</p>
+                    <ul>
+                        <li>Start with the full committee name in ALL CAPS (e.g., <code>THE DISARMAMENT COMMISSION,</code>)</li>
+                        <li>Clause starters are <em>italicized</em>.</li>
+                        <li>Every clause ends with a <strong>comma (,)</strong>.</li>
+                    </ul>
+                    <p>Common preamble starters:</p>
+                    <div class="clause-grid">
+                        <div class="clause-card preamble"><em>Aware of</em></div>
+                        <div class="clause-card preamble"><em>Bearing in mind</em></div>
+                        <div class="clause-card preamble"><em>Deeply concerned</em></div>
+                        <div class="clause-card preamble"><em>Declaring</em></div>
+                        <div class="clause-card preamble"><em>Emphasizing</em></div>
+                        <div class="clause-card preamble"><em>Guided by</em></div>
+                        <div class="clause-card preamble"><em>Having examined</em></div>
+                        <div class="clause-card preamble"><em>Keeping in mind</em></div>
+                        <div class="clause-card preamble"><em>Noting with regret</em></div>
+                        <div class="clause-card preamble"><em>Reaffirming</em></div>
+                        <div class="clause-card preamble"><em>Recalling</em></div>
+                        <div class="clause-card preamble"><em>Recognizing</em></div>
+                    </div>
+                    <div class="accordion-header">Full Example Preamble <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <div class="reso-text-block">
+<em>Aware of</em> that 4% of diamonds produced are classified as "conflict or blood diamonds",<br><br>
+<em>Recognizing</em> the Kimberley Process Certification Scheme (KPCS) as an internationally recognized certification system,<br><br>
+<em>Further recognizing</em> that the KPCS is lacking a comprehensive system for monitoring where diamonds are mined, how they are mined and how proceeds are used,
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Part 3: Operative (The "HOW")</h2>
+                    <p>Remember:</p>
+                    <ul>
+                        <li>Clauses are <strong>numbered (1, 2, 3...)</strong>.</li>
+                        <li>Clause starters are <u>underlined</u>.</li>
+                        <li>Every clause ends with a <strong>semicolon (;)</strong>, except the last which ends with a <strong>period (.)</strong></li>
+                    </ul>
+                    <p>Common operative starters:</p>
+                    <div class="clause-grid">
+                        <div class="clause-card operative"><u>Approves</u></div>
+                        <div class="clause-card operative"><u>Asks</u></div>
+                        <div class="clause-card operative"><u>Authorizes</u></div>
+                        <div class="clause-card operative"><u>Calls for</u></div>
+                        <div class="clause-card operative"><u>Urges</u></div>
+                        <div class="clause-card operative"><u>Requests</u></div>
+                        <div class="clause-card operative"><u>Encourages</u></div>
+                        <div class="clause-card operative"><u>Recommends</u></div>
+                    </div>
+                    <div class="accordion-header">Operative Example & Sub-clauses <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <div class="reso-text-block">
+1. <u>Calls for</u> all relevant Member States to sign and ratify the KPCS to promote cooperation and awareness of trade;<br><br>
+2. <u>Further calls for</u> all relevant nations which are withholding signature to request funds from IGOs such as IMF and World Bank;<br><br>
+3. <u>Asks for</u> the creation of the Collation for Stopping Conflict Diamonds (CSCD), which would work with Member States by:<br>
+<span class="sub-clause">a. monitoring who is buying and selling the diamonds</span><br>
+<span class="sub-clause">b. ensuring the methods are legal according to KPCS</span><br>
+<span class="sub-clause">c. sending submitted proof of diamond proceeds</span><br>
+<span class="sub-clause">d. sending an observer team in the first year following ratification;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Do's and Don'ts</h2>
+                    <div class="accordion-header">Resolution Do's and Don'ts <span class="arrow">▼</span></div>
+                    <div class="accordion-content">
+                        <h3 class="text-green">✅ Do...</h3>
+                        <ul>
+                            <li>Write the entire resolution as one sentence.</li>
+                            <li>End preambulatory clauses with a comma.</li>
+                            <li>End operative clauses with a semicolon; last clause with a period.</li>
+                            <li>List co-submitters alphabetically.</li>
+                        </ul>
+                        <h3 style="color: #fca5a5;">❌ Don't...</h3>
+                        <ul>
+                            <li>Use personal pronouns (I, we, our).</li>
+                            <li>Repeat clause starters without 'Further'.</li>
+                            <li>Have lists with a single item (a. requires b.).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 4. RESOLUTION BUILDER ==================== -->
+        <div id="resolution-builder-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header purple">
+                    <h1>📝 Resolution Builder</h1>
+                    <p>Write & Validate with Live Syntax Checking</p>
+                </div>
+
+                <div class="section">
+                    <h2>Header Information</h2>
+                    <div class="reso-form-group">
+                        <label for="reso-forum">FORUM:</label>
+                        <input type="text" id="reso-forum" placeholder="e.g., General Assembly First Committee">
+                    </div>
+                    <div class="reso-form-group">
+                        <label for="reso-question">QUESTION OF:</label>
+                        <input type="text" id="reso-question" placeholder="e.g., The role of diamonds in fueling conflict...">
+                    </div>
+                    <div class="reso-form-group">
+                        <label for="reso-submitter">SUBMITTED BY:</label>
+                        <input type="text" id="reso-submitter" placeholder="e.g., Saint Vincent and the Grenadines">
+                    </div>
+                    <div class="reso-form-group">
+                        <label for="reso-cosubmitters">CO-SUBMITTERS: <span class="text-muted">(comma-separated)</span></label>
+                        <input type="text" id="reso-cosubmitters" placeholder="e.g., Argentina, Australia, Canada, France">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Preambulatory Clauses</h2>
+                    <p class="text-muted">Click a starter to insert it. Each clause should end with a comma.</p>
+                    <div class="clause-chip-container">
+                        <button class="clause-chip" data-clause="Aware of" data-type="preamble">Aware of</button>
+                        <button class="clause-chip" data-clause="Bearing in mind" data-type="preamble">Bearing in mind</button>
+                        <button class="clause-chip" data-clause="Deeply concerned" data-type="preamble">Deeply concerned</button>
+                        <button class="clause-chip" data-clause="Emphasizing" data-type="preamble">Emphasizing</button>
+                        <button class="clause-chip" data-clause="Guided by" data-type="preamble">Guided by</button>
+                        <button class="clause-chip" data-clause="Having examined" data-type="preamble">Having examined</button>
+                        <button class="clause-chip" data-clause="Noting" data-type="preamble">Noting</button>
+                        <button class="clause-chip" data-clause="Reaffirming" data-type="preamble">Reaffirming</button>
+                        <button class="clause-chip" data-clause="Recalling" data-type="preamble">Recalling</button>
+                        <button class="clause-chip" data-clause="Recognizing" data-type="preamble">Recognizing</button>
+                    </div>
+                    <div class="reso-form-group">
+                        <textarea id="reso-preamble-text" placeholder="Type your preambulatory clauses here...&#10;&#10;Example:&#10;Aware of that 4% of diamonds are conflict diamonds,&#10;Recognizing the Kimberley Process Certification Scheme,"></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Operative Clauses</h2>
+                    <p class="text-muted">Click a starter to insert it. Each clause ends with semicolon; last with period.</p>
+                    <div class="clause-chip-container">
+                        <button class="clause-chip" data-clause="Calls for" data-type="operative">Calls for</button>
+                        <button class="clause-chip" data-clause="Urges" data-type="operative">Urges</button>
+                        <button class="clause-chip" data-clause="Requests" data-type="operative">Requests</button>
+                        <button class="clause-chip" data-clause="Encourages" data-type="operative">Encourages</button>
+                        <button class="clause-chip" data-clause="Recommends" data-type="operative">Recommends</button>
+                        <button class="clause-chip" data-clause="Approves" data-type="operative">Approves</button>
+                        <button class="clause-chip" data-clause="Asks" data-type="operative">Asks</button>
+                        <button class="clause-chip" data-clause="Authorizes" data-type="operative">Authorizes</button>
+                    </div>
+                    <div class="reso-form-group">
+                        <textarea id="reso-operative-text" placeholder="Type your operative clauses here...&#10;&#10;Example:&#10;1. Calls for all Member States to sign the KPCS;&#10;2. Urges nations to request funds from IGOs;"></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>✅ Syntax Checker</h2>
+                    <div class="syntax-panel" id="syntax-results">
+                        <p class="text-muted">Start typing to see live validation...</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>📋 Live Preview</h2>
+                    <div class="reso-preview" id="reso-preview">
+                        <span class="text-muted">Your formatted resolution will appear here as you type...</span>
+                    </div>
+                    <div style="margin-top: 16px; display: flex; gap: 10px;">
+                        <button class="btn-primary" id="reso-copy-btn">📋 Copy Resolution</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 5. CHAIR SIMULATOR ==================== -->
+        <div id="chair-sim-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header blue">
+                    <h1>🧑‍⚖️ Chair Simulator</h1>
+                    <p>Practice Chair Dialogue with Audio</p>
+                </div>
+
+                <div class="section">
+                    <h2>Opening the Session</h2>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The House will come to order."</span>
+                        <p class="dialogue">Used to start the session or regain control of the room.</p>
+                        <button class="speak-btn" data-text="The House will come to order.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"Roll call. When your country is called, please respond with 'Present' or 'Present and voting.'"</span>
+                        <p class="dialogue">Begin by taking attendance of all delegations.</p>
+                        <button class="speak-btn" data-text="Roll call. When your country is called, please respond with Present or Present and voting.">🔊 Hear it</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Introducing a Resolution</h2>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The chair calls upon the delegate of [Country] to read the resolution to the House."</span>
+                        <button class="speak-btn" data-text="The chair calls upon the delegate to read the resolution to the House.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The House has heard the resolution. Is there a second?"</span>
+                        <p class="dialogue">Requires at least one other delegation to support bringing it to debate.</p>
+                        <button class="speak-btn" data-text="The House has heard the resolution. Is there a second?">🔊 Hear it</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Managing Debate</h2>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The Chair sets debate time at 10 minutes for and 10 minutes against the resolution."</span>
+                        <button class="speak-btn" data-text="The Chair sets debate time at 10 minutes for and 10 minutes against the resolution.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The floor is now open for debate. Are there any delegates wishing to speak for the resolution?"</span>
+                        <button class="speak-btn" data-text="The floor is now open for debate. Are there any delegates wishing to speak for the resolution?">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"Your point is well taken." / "Your point is not well taken."</span>
+                        <p class="dialogue">Formal accept/reject of a Point of Order.</p>
+                        <button class="speak-btn" data-text="Your point is well taken.">🔊 "Well taken"</button>
+                        <button class="speak-btn" data-text="Your point is not well taken." style="margin-left: 6px;">🔊 "Not well taken"</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The chair proposes an extension of debate time by 5 minutes for and 5 minutes against."</span>
+                        <button class="speak-btn" data-text="The chair proposes an extension of debate time by 5 minutes for and 5 minutes against.">🔊 Hear it</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Voting Procedures</h2>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"The debate is now closed. We will move into voting procedures. All points are out of order."</span>
+                        <p class="dialogue">Critical announcement — all note-passing and discussion is now prohibited.</p>
+                        <button class="speak-btn" data-text="The debate is now closed. We will move into voting procedures. All points are out of order.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"Will all those in favour of the resolution please raise their placards."</span>
+                        <button class="speak-btn" data-text="Will all those in favour of the resolution please raise their placards.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"Will all those against the resolution please raise their placards."</span>
+                        <button class="speak-btn" data-text="Will all those against the resolution please raise their placards.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"Will all those abstaining please raise their placards."</span>
+                        <button class="speak-btn" data-text="Will all those abstaining please raise their placards.">🔊 Hear it</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"With X votes in favour, Y votes against, and Z abstaining, the resolution has passed/failed."</span>
+                        <button class="speak-btn" data-text="With 15 votes in favour, 8 votes against, and 3 abstaining, the resolution has passed.">🔊 Hear example</button>
+                    </div>
+                    <div class="chair-dialogue-box">
+                        <span class="phrase">"Clapping is (not) in order."</span>
+                        <p class="dialogue">Used to maintain decorum after a vote result.</p>
+                        <button class="speak-btn" data-text="Clapping is in order.">🔊 "In order"</button>
+                        <button class="speak-btn" data-text="Clapping is not in order." style="margin-left: 6px;">🔊 "Not in order"</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 6. FLOW OF DEBATE ==================== -->
+        <div id="flow-of-debate-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header">
+                    <h1>🌊 Flow of Debate</h1>
+                    <p>From Roll Call to Final Vote</p>
+                </div>
+
+                <div class="section" style="text-align: center;">
+                    <h2>Quick Overview</h2>
+                    <div class="flowchart">
+                        <div class="flow-step">📋 Roll Call</div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step">🤝 Lobbying</div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step">🗣️ Open Debate</div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step">🗳️ Vote</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Detailed Process</h2>
+                    <div class="flowchart">
+                        <div class="flow-step"><strong>Delegates Enter & Roll Call</strong><br><small>Session begins — attendance is taken</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>Lobbying (First Session)</strong><br><small>Delegates find co-submitters and merge resolutions</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>Chair Announces Resolution</strong><br><small>"The next resolution to be debated is 1.1..."</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>Main Submitter is Called</strong><br><small>Reads operative clauses and gives 3 min. speech</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>Main Submitter Yields</strong><br><small>To Points of Information or back to the Chair</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>Chair Sets Debate Time & Opens Floor</strong></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-split-container">
+                            <div class="flow-split-branch">
+                                <div class="flow-step"><strong>Delegate Speaks</strong><br><small>Recognized by Chair</small></div>
+                                <div class="flow-connector"></div>
+                                <div class="flow-step"><strong>Delegate Yields</strong><br><small>To points or back to Chair</small></div>
+                            </div>
+                            <div class="flow-split-branch">
+                                <div class="flow-step"><strong>Amendment Proposed</strong><br><small>Change to the resolution</small></div>
+                                <div class="flow-connector"></div>
+                                <div class="flow-step"><strong>Amendment Voted On</strong><br><small>Separate mini-debate & vote</small></div>
+                            </div>
+                        </div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>Debate Time Elapses or Motion to Close</strong></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step" style="border-color: var(--accent-green);"><strong>🗳️ Voting Procedures</strong><br><small>Chair closes debate — the House votes</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 7. SPEECH GUIDE ==================== -->
+        <div id="speech-guide-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header orange">
+                    <h1>🗣️ Speech Studio</h1>
+                    <p>Structure & Practice Persuasive Speeches</p>
+                </div>
+
+                <div class="section">
+                    <h2>How to Structure a Speech (60–90 Seconds)</h2>
+                    <div class="flowchart">
+                        <div class="flow-step"><strong>1. Opening (10 sec):</strong> State your position clearly.<br><small>"The delegation of [Country] rises in strong support/opposition..."</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>2. Key Points (40–60 sec):</strong> Give 2–3 strong arguments.<br><small>Use facts, statistics, or references to treaties and UN resolutions.</small></div>
+                        <div class="flow-connector"></div>
+                        <div class="flow-step"><strong>3. Closing (10 sec):</strong> Reinforce your position.<br><small>"For these reasons, the delegation urges the House to vote in favour/against."</small></div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Example Speeches</h2>
+                    <div class="speech-tabs">
+                        <button class="speech-tab-btn active" data-tab="climate">Climate Finance</button>
+                        <button class="speech-tab-btn" data-tab="privacy">Digital Privacy</button>
+                        <button class="speech-tab-btn" data-tab="education">Education</button>
+                        <button class="speech-tab-btn" data-tab="ai">AI Regulation</button>
+                        <button class="speech-tab-btn" data-tab="vaccine">Vaccines</button>
+                        <button class="speech-tab-btn" data-tab="fossil">Fossil Fuels</button>
+                    </div>
+
+                    <!-- Climate -->
+                    <div id="speech-climate" class="speech-content active">
+                        <h3>Topic: Global Climate Adaptation Fund</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (Bangladesh)</h4>
+                                <p>"The delegation of Bangladesh rises in <span class="adj">strong</span> support. This fund addresses a <span class="adj">fundamental</span> injustice. The nations least responsible for climate change are the ones suffering the most. <span class="expr">This is not charity — it is climate justice.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (Singapore)</h4>
+                                <p>"Singapore must <span class="adj">respectfully</span> oppose. The commitment is <span class="adj">economically unrealistic</span>. Binding financial obligations without clear accountability mechanisms will lead to misallocation. <span class="expr">This formula is neither fair nor effective.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy -->
+                    <div id="speech-privacy" class="speech-content">
+                        <h3>Topic: Digital Privacy & Data Protection</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (Germany)</h4>
+                                <p>"Germany <span class="adj">strongly</span> supports this <span class="adj">essential</span> resolution. Citizens' data is being harvested at an <span class="adj">unprecedented</span> scale without consent. <span class="expr">Privacy and progress are not mutually exclusive.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (USA)</h4>
+                                <p>"The United States <span class="adj">firmly</span> opposes this. Overly strict data regulations will stifle innovation and harm the global digital economy. <span class="expr">This creates dangerous censorship potential.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div id="speech-education" class="speech-content">
+                        <h3>Topic: Universal Access to Quality Education</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (Nigeria)</h4>
+                                <p>"Nigeria stands in <span class="adj">firm</span> support. Over 20 million children in our country alone lack access to basic education. <span class="expr">Education is not a privilege — it is a fundamental human right.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (Japan)</h4>
+                                <p>"Japan <span class="adj">respectfully</span> questions the feasibility. The resolution lacks a <span class="adj">concrete</span> funding mechanism. <span class="expr">Good intentions without practical implementation help no one.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI -->
+                    <div id="speech-ai" class="speech-content">
+                        <h3>Topic: Regulation of Artificial Intelligence</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (France)</h4>
+                                <p>"France <span class="adj">wholeheartedly</span> supports regulation. AI systems are making life-altering decisions without transparency or accountability. <span class="expr">We must govern AI before AI governs us.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (South Korea)</h4>
+                                <p>"South Korea <span class="adj">respectfully</span> opposes. <span class="adj">Premature</span> regulation risks killing innovation. <span class="expr">The cure should not be worse than the disease.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vaccine -->
+                    <div id="speech-vaccine" class="speech-content">
+                        <h3>Topic: Equitable Vaccine Distribution</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (India)</h4>
+                                <p>"India rises in <span class="adj">strong</span> support. No nation is safe until every nation is safe. <span class="adj">Hoarding</span> vaccines prolongs the pandemic for everyone. <span class="expr">Vaccine equity is not generosity — it is strategy.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (UK)</h4>
+                                <p>"The United Kingdom <span class="adj">respectfully</span> disagrees with the proposed mechanism. Compulsory sharing undermines <span class="adj">intellectual property</span> rights. <span class="expr">Innovation must be rewarded, not punished.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fossil -->
+                    <div id="speech-fossil" class="speech-content">
+                        <h3>Topic: Phasing Out Fossil Fuel Subsidies</h3>
+                        <div class="speech-grid">
+                            <div class="speech-box speech-for">
+                                <h4>✅ Speech FOR (Sweden)</h4>
+                                <p>"Sweden <span class="adj">strongly</span> supports this resolution. Fossil fuel subsidies amount to $5.9 trillion annually — that is <span class="adj">staggering</span>. <span class="expr">We are literally paying to destroy our own planet.</span>"</p>
+                            </div>
+                            <div class="speech-box speech-against">
+                                <h4>❌ Speech AGAINST (Saudi Arabia)</h4>
+                                <p>"Saudi Arabia <span class="adj">firmly</span> opposes. An abrupt phase-out would devastate <span class="adj">developing</span> economies. <span class="expr">Energy transition must be gradual, not catastrophic.</span>"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TTS Practice -->
+                <div class="section">
+                    <h2>🎙️ Practice Listening</h2>
+                    <p class="text-muted">Select a speech above, then tap the button to hear a model delivery.</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn-primary" id="speak-for-btn">🔊 Hear FOR Speech</button>
+                        <button class="btn-secondary" id="speak-against-btn">🔊 Hear AGAINST Speech</button>
+                        <button class="btn-secondary" id="stop-speech-btn" style="display:none;">⏹ Stop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 8. ROP QUIZ ==================== -->
+        <div id="quiz-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header orange">
+                    <h1>🎯 Rules of Procedure Quiz</h1>
+                    <p>Test Your THIMUN Knowledge</p>
+                </div>
+                <div class="section" id="quiz-container">
+                    <!-- Quiz content rendered by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 9. TIMER & PLACARD ==================== -->
+        <div id="timer-page" class="page">
+            <button class="back-btn" data-back>← Back</button>
+            <div class="guide-container">
+                <div class="guide-header">
+                    <h1>⏱️ Debate Timer</h1>
+                    <p>Track Speaking Time</p>
+                </div>
+                <div class="section">
+                    <div class="timer-presets">
+                        <button class="timer-preset active" data-seconds="60">60s</button>
+                        <button class="timer-preset" data-seconds="90">90s</button>
+                        <button class="timer-preset" data-seconds="120">2 min</button>
+                        <button class="timer-preset" data-seconds="180">3 min</button>
+                        <button class="timer-preset" data-seconds="300">5 min</button>
+                    </div>
+                    <div class="timer-display" id="timer-display">01:30</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn start" id="timer-start">▶ Start</button>
+                        <button class="timer-btn reset" id="timer-reset">↺ Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-container" style="margin-top: 20px;">
+                <div class="guide-header blue">
+                    <h1>🏁 Virtual Placard</h1>
+                    <p>Tap to Raise Your Country's Placard</p>
+                </div>
+                <div class="section">
+                    <select class="country-select" id="country-select">
+                        <option value="">Select your country...</option>
+                    </select>
+                    <div class="placard-container" id="placard-container">
+                        <div class="placard-flag" id="placard-flag">🏳️</div>
+                        <div class="placard-country" id="placard-country">Select a Country</div>
+                        <div class="placard-status" id="placard-status">Tap to raise placard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end app-container -->
+
+    <!-- ========== BOTTOM NAVIGATION ========== -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="portal-page">
+            <span class="nav-icon">🏠</span>
+            Home
+        </button>
+        <button class="nav-item" data-page="speech-guide-page">
+            <span class="nav-icon">🗣️</span>
+            Speech
+        </button>
+        <button class="nav-item" data-page="resolution-builder-page">
+            <span class="nav-icon">📝</span>
+            Resolution
+        </button>
+        <button class="nav-item" data-page="quiz-page">
+            <span class="nav-icon">🎯</span>
+            Quiz
+        </button>
+        <button class="nav-item" data-page="timer-page">
+            <span class="nav-icon">⏱️</span>
+            Timer
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>
